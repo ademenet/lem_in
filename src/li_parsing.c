@@ -6,33 +6,19 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/01 18:51:33 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/01 19:04:36 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-// t_lili		*li_lstnew(t_lili *room)
-// {
-// 	if (room)
-// 	{
-//
-// 	}
-// 	return ()
-// }
-//
-// t_lili		**li_new_malloc(t_lili **tube, t_lili *room)
-// {
-// 	t_lili	**tmp;
-//
-// 	if (tube)
-// 	{
-// 		tmp = tube;
-// 		tube = (t_lili**)malloc(sizeof(tmp) + sizeof(t_lili*));
-// 		free(tmp);
-// 	}
-// 	return (tube);
-// }
+/*
+** Here, we parse, we check, to be sure that our datas are fine.
+*/
+
+/*
+** The first line correspond to ants number.
+*/
 
 int			li_get_ants_nb(char *line)
 {
@@ -54,9 +40,36 @@ int			li_get_ants_nb(char *line)
 	return ((int)nb);
 }
 
-// char		*li_get_room(char *line)
+/*
+** The rooms are defined as it: name coord_x coord_y.
+** All errors exit the program.
+*/
+
+char		*li_get_room(char *line)
+{
+
+}
+
+// t_lili		*li_lstnew(t_lili *room)
 // {
+// 	if (room)
+// 	{
 //
+// 	}
+// 	return ()
+// }
+
+// t_lili		**li_new_malloc(t_lili **tube, t_lili *room)
+// {
+// 	t_lili	**tmp;
+
+// 	if (tube)
+// 	{
+// 		tmp = tube;
+// 		tube = (t_lili**)malloc(sizeof(tmp) + sizeof(t_lili*));
+// 		free(tmp);
+// 	}
+// 	return (tube);
 // }
 
 // void		li_readline(char *line)
@@ -78,13 +91,13 @@ int			li_get_ants_nb(char *line)
 // 		i++;
 // 	}
 // }
-//
+
 // void		li_parsing()
 // {
 // 	int		ret;
 // 	int		line_nb;
 // 	char	*line;
-//
+
 // 	while ((ret = get_next_line(1, &line)) != 0)
 // 	{
 // 		line_nb += ret;
