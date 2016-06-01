@@ -28,12 +28,20 @@ MY_UNIT_TEST(get_ants_nb)
 	// UT_ASS("Int max", nb)
 	// nb = li_get_ants_nb("-1");
 	// UT_ASS("Zero", nb)
+}
 
+MY_UNIT_TEST(errorempty)
+{
+	char line[1] = "a";
+	li_errorempty(line);
+	// char linerr[0];
+	// li_errorempty(linerr);
 }
 
 ALL_TESTS
 {
 	MY_TEST("get_ants_nb", get_ants_nb)
+	MY_TEST("errorempty", errorempty)
 }
 
 RUN_TEST

@@ -8,7 +8,7 @@
 
 int		test_run = 0;
 
-#define MY_TEST(name, ft) printf("%-15s -- ", name); ft();
+#define MY_TEST(name, ft) printf("%-15s -- ", name); ft(); printf("\n");
 
 #define MY_UNIT_TEST(name) void name()
 

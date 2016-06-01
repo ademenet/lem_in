@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/01 17:32:42 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/01 18:51:33 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int			li_get_ants_nb(char *line)
 // {
 //
 // }
-//
+
 // void		li_readline(char *line)
 // {
 // 	int		i;
@@ -82,10 +82,15 @@ int			li_get_ants_nb(char *line)
 // void		li_parsing()
 // {
 // 	int		ret;
+// 	int		line_nb;
 // 	char	*line;
 //
 // 	while ((ret = get_next_line(1, &line)) != 0)
 // 	{
+// 		line_nb += ret;
+// 		ft_errorempty(line);
+// 		if (line_nb == 1)
+// 			li_get_ants_nb(line);
 // 		puts(line);
 // 	}
 // }

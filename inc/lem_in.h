@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/01 16:59:32 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/01 18:34:35 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int						li_get_ants_nb(char *line);
 ** ERROR
 */
 
+void					li_errorempty(char *line);
 void					li_error(void);
 void					li_errormsg(char *msg);
 
