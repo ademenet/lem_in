@@ -6,11 +6,11 @@
 #    By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/30 16:59:27 by ademenet          #+#    #+#              #
-#    Updated: 2016/06/01 10:23:28 by ademenet         ###   ########.fr        #
+#    Updated: 2016/06/01 14:44:18 by ademenet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: all clean fclean re norme
+.PHONY: all test clean fclean re norme
 
 CC = gcc
 
@@ -36,10 +36,13 @@ OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(OBJLIB)
+$(NAME): $(OBJ)
 	@make -C libft
-	@$(CC) -o $@ $^ ft_printf/libftprintf.a
+	@$(CC) -o $@ $^ libft/libft.a libft/ft_printf/libftprintf.a
 	@echo "\033[1;34mLem_in\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
+
+test: $(OBJ)
+	
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true

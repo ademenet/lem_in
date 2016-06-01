@@ -4,10 +4,11 @@
 #include <strings.h>
 #include <stdlib.h>
 
+#define DEBUG 1
+
 int		test_run = 0;
 
-#define MY_TEST(name, ft)	fprintf(stdout, "\033[0m%s -- \033[0m", name); ft();\
-							puts("\n");
+#define MY_TEST(name, ft) printf("%-15s -- ", name); ft();
 
 #define MY_UNIT_TEST(name) void name()
 
@@ -15,12 +16,13 @@ int		test_run = 0;
 
 #define RUN_TEST	int main()\
 					{\
+						setbuf(stdout, NULL);\
 						run_all_tests();\
-						fprintf(stdout, "TESTS RUN: %d\n", test_run);\
+						fprintf(stdout, "\nTESTS RUN: %d\n", test_run);\
 						return (0);\
 					}\
 
-#define UT_ASS(msg, test) test_run++; do { if (!(test)) puts(msg); else puts("."); } while (0);
+#define UT_ASS(msg, test) test_run++; do { if (!(test)) printf("%s", msg); else printf("."); } while (0);
 
 /*
 ** The file should be as follow:

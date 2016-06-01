@@ -6,28 +6,47 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/05/31 13:14:17 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/01 16:59:32 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-typedef			t_liroom;
-typedef			t_litube;
+# include <stdio.h>
+# include <limits.h>
+# include "../libft/libft.h"
+# include "../libft/ft_printf/include/fpf_printf.h"
 
-struct			s_liroom
-{
-	char		*name;
-	int			coord[2];
-	t_liroom	*next;
-}
+/*
+** This structure contains our graph.
+*/
 
-struct			s_litube
+struct					s_lili
 {
-	t_liroom	*r1;
-	t_liroom	*r2;
-	t_litube	*next;
-}
+	char				*name;
+	struct s_lili		**tube;
+	struct s_lili		*next;
+}						t_lili;
+
+/*
+** This structure contains useful variables.
+*/
+
+struct					s_ligen
+{
+	int					ant;
+	struct s_lili		*start;
+	struct s_lili		*end;
+}						t_ligen;
+
+int						li_get_ants_nb(char *line);
+
+/*
+** ERROR
+*/
+
+void					li_error(void);
+void					li_errormsg(char *msg);
 
 #endif
