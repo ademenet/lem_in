@@ -6,7 +6,7 @@
 #    By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/30 16:59:27 by ademenet          #+#    #+#              #
-#    Updated: 2016/05/30 17:28:02 by ademenet         ###   ########.fr        #
+#    Updated: 2016/06/01 10:23:28 by ademenet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAGS = -Wall -Wextra -Werror
 
 CPP_FLAGS = -Iinclude
 
-NAME = push_swap
+NAME = lem_in
 
 SRC_PATH = ./src
 INC_PATH = ./inc
