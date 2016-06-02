@@ -56,13 +56,6 @@ MY_UNIT_TEST(get_room)
 	UT_ASS("coord_y", coord_y == 3)
 	UT_ASS("21", strcmp(nom, "21") == 0)
 
-	char	line6[50] = "nom-bizarre-avec-des-tirets 2147483647 2147483647";
-	nom = li_get_room(line6, &coord_x, &coord_y);
-	UT_ASS("coord_x", coord_x == 2147483647)
-	UT_ASS("coord_y", coord_y == 2147483647)
-	UT_ASS("tirets", strcmp(nom, "nom-bizarre-avec-des-tirets") == 0)
-
-
 	// char	line2[30] = "Lerror 2 3";
 	// nom = li_get_room(line2, &coord_x, &coord_y);
 
@@ -78,6 +71,8 @@ MY_UNIT_TEST(get_room)
 	// char	line6[30] = "21 3 4 3 osa oasjqh 9";
 	// nom = li_get_room(line6, &coord_x, &coord_y);
 
+	// char	line7[30] = "avec-des-tirets 34 42";
+	// nom = li_get_room(line7, &coord_x, &coord_y);
 
 }
 

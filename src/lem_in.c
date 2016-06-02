@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   li_error.c                                         :+:      :+:    :+:   */
+/*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/31 18:39:36 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/02 17:10:44 by ademenet         ###   ########.fr       */
+/*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
+/*   Updated: 2016/06/02 19:02:44 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void		li_error(void)
+int			main(void)
 {
-	write(2, "Error\n", 6);
-	exit(-1);
-}
-
-void		li_errormsg(char *msg)
-{
-	perror(msg);
-	exit(-1);
+	return (0);
 }
