@@ -6,18 +6,20 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/01 19:04:36 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/02 10:40:44 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
 /*
-** Here, we parse, we check, to be sure that our datas are fine.
+** Here, we parse, we check, to be sure that our datas are fine. Nor empty line
+** nor improper datas will be tolerated.
 */
 
 /*
-** The first line correspond to ants number.
+** The first line correspond to ants number, it should be an positive integer.
+** Otherwise, we'll consider it as an error.
 */
 
 int			li_get_ants_nb(char *line)
@@ -42,13 +44,34 @@ int			li_get_ants_nb(char *line)
 
 /*
 ** The rooms are defined as it: name coord_x coord_y.
-** All errors exit the program.
 */
 
-char		*li_get_room(char *line)
+char		*li_get_room(char *line, int *coord_x, int *coord_y)
 {
+	char	**split_line;
+	int		len;
 
+	split_line = ft_strsplit(line, ' ');
+	len = 0;
+	while (split_line[len])
+		len++;
+	if (len != 3)
+		li_error();
+	if (split_line[0][0] == '#' || split_line[0][0] == 'L')
+		li_error();
+	*coord_x = li_get_ants_nb(split_line[1]);
+	*coord_y = li_get_ants_nb(split_line[2]);
+	free(split_line[1]);
+	free(split_line[2]);
+	free(split_line);
+	return (split_line[0]);
 }
+
+/*
+** Rooms are linked with tubes, tubes are given as follows: name1-name2.
+*/
+
+
 
 // t_lili		*li_lstnew(t_lili *room)
 // {

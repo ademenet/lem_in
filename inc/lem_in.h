@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/01 18:34:35 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/02 10:40:30 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,12 @@ struct					s_ligen
 	struct s_lili		*end;
 }						t_ligen;
 
+/*
+** LEXER-PARSER
+*/
+
 int						li_get_ants_nb(char *line);
+char					*li_get_room(char *line, int *coord_x, int *coord_y);
 
 /*
 ** ERROR

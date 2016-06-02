@@ -38,10 +38,54 @@ MY_UNIT_TEST(errorempty)
 	// li_errorempty(linerr);
 }
 
+MY_UNIT_TEST(get_room)
+{
+	char	*nom;
+	int		coord_x;
+	int		coord_y;
+
+	char	line1[30] = "nom 2 3";
+	nom = li_get_room(line1, &coord_x, &coord_y);
+	UT_ASS("coord_x", coord_x == 2)
+	UT_ASS("coord_y", coord_y == 3)
+	UT_ASS("nom", strcmp(nom, "nom") == 0)
+
+	char	line5[30] = "21 3 3";
+	nom = li_get_room(line5, &coord_x, &coord_y);
+	UT_ASS("coord_x", coord_x == 3)
+	UT_ASS("coord_y", coord_y == 3)
+	UT_ASS("21", strcmp(nom, "21") == 0)
+
+	char	line6[50] = "nom-bizarre-avec-des-tirets 2147483647 2147483647";
+	nom = li_get_room(line6, &coord_x, &coord_y);
+	UT_ASS("coord_x", coord_x == 2147483647)
+	UT_ASS("coord_y", coord_y == 2147483647)
+	UT_ASS("tirets", strcmp(nom, "nom-bizarre-avec-des-tirets") == 0)
+
+
+	// char	line2[30] = "Lerror 2 3";
+	// nom = li_get_room(line2, &coord_x, &coord_y);
+
+	// char	line3[30] = "#error 2 3";
+	// nom = li_get_room(line3, &coord_x, &coord_y);
+
+	// char	line3[30] = "error -21 3";
+	// nom = li_get_room(line3, &coord_x, &coord_y);
+
+	// char	line4[30] = "21 3";
+	// nom = li_get_room(line4, &coord_x, &coord_y);
+
+	// char	line6[30] = "21 3 4 3 osa oasjqh 9";
+	// nom = li_get_room(line6, &coord_x, &coord_y);
+
+
+}
+
 ALL_TESTS
 {
 	MY_TEST("get_ants_nb", get_ants_nb)
 	MY_TEST("errorempty", errorempty)
+	MY_TEST("get_room", get_room)
 }
 
 RUN_TEST
