@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/03 16:42:03 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/03 17:34:12 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,12 @@ int					li_ants_get(char *line, t_graph *data)
 		if (line[0] == '-')
 			return (-1);
 		while (line[i] != '\0')
-			ft_isdigit(line[i]) ? i++ : return (-1) ;
+		{
+			if (ft_isdigit(line[i]))
+				i++;
+			else
+				return (-1) ;
+		}
 		nb = ft_atoi(line);
 		if (nb > INT_MAX)
 			return (-1);
@@ -54,13 +59,17 @@ int					li_sharp_handler(char *line)
 		return (1);
 	else if (ft_strcmp(line, "##end"))
 		return (2);
+	else
+		return (0);
 }
 
 /*
-**
+** Our main parsing function. Loops on standard input and analyse each line.
+** It continues to loop and display what we read even if informations are
+** wrong.
 */
 
-t_graph				*li_parsing(t_graph *data)
+t_graph				li_parsing(t_graph *data)
 {
 	int				err;
 	int				com;
@@ -72,7 +81,7 @@ t_graph				*li_parsing(t_graph *data)
 	{
 		ft_putendl(line);
 		if (err == -1)
-			ft_error();
+			li_error();
 		else if (line[0] == '#')
 			com = li_sharp_handler(line);
 		else if (err == 0)
@@ -82,48 +91,5 @@ t_graph				*li_parsing(t_graph *data)
 		else if (err == 2)
 			err = li_tube_get(line, data);
 	}
-	return (data);
+	return (*data);
 }
-
-
-// t_room		*li_lstnew(t_room *room)
-// {
-// 	if (room)
-// 	{
-//
-// 	}
-// 	return ()
-// }
-
-// t_room		**li_new_malloc(t_room **tube, t_room *room)
-// {
-// 	t_room	**tmp;
-
-// 	if (tube)
-// 	{
-// 		tmp = tube;
-// 		tube = (t_room**)malloc(sizeof(tmp) + sizeof(t_room*));
-// 		free(tmp);
-// 	}
-// 	return (tube);
-// }
-
-// void		li_readline(char *line)
-// {
-// 	int		i;
-//
-// 	i = 0;
-// 	while (line[i] != '\0')
-// 	{
-// 		if (line[0] == '#')
-// 		{
-// 			if (line[1] == '#')
-// 			{
-// 				puts("Coucou");
-// 				i++;
-// 			}
-// 			i++;
-// 		}
-// 		i++;
-// 	}
-// }

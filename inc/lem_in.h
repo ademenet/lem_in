@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/03 15:57:08 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/03 18:42:57 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include "../libft/libft.h"
 # include "../libft/ft_printf/include/fpf_printf.h"
 
+typedef struct s_room	t_room;
+typedef struct s_graph	t_graph;
+
 /*
 ** This structure contains our graph: room's name (aka identifier),
 ** room pointer's array and next node pointer.
@@ -27,9 +30,9 @@ struct					s_room
 {
 	char				*name;
 	int					weight;
-	struct s_room		**tube;
-	struct s_room		*next;
-}						t_room;
+	t_room				**tube;
+	t_room				*next;
+};
 
 /*
 ** This structure contains useful variables: ant's number, our start pointer,
@@ -43,7 +46,7 @@ struct					s_graph
 	struct s_room		*end;
 	struct s_room		*head;
 	char				bonus[6];
-}						t_graph;
+};
 
 /*
 ** Ants structure: WIP
@@ -67,23 +70,41 @@ enum					e_err
 };
 
 /*
-** PARSER
-*/
-
-int						li_ants_get(char *line, t_graph *data, int * err);
-char					*li_room_get(char *line, int *coord_x, int *coord_y);
-
-/*
 ** GRAPH
 */
 
 void					li_new_graph(t_graph *data);
 
 /*
+** PARSING
+*/
+
+t_graph					li_parsing(t_graph *data);
+int						li_sharp_handler(char *line);
+int						li_ants_get(char *line, t_graph *data);
+
+/*
+** TUBE
+*/
+
+int						li_tube_get(char *line, t_graph *data);
+t_room					*li_tube_room_find(char *name, t_graph *data);
+void					li_tube_dig(t_room *room1, t_room *room2);
+t_room					**li_tube_copy(t_room **tube, t_room *to_link);
+
+/*
+** ROOM
+*/
+
+int						li_room_get(char *line, t_graph *data, int *com);
+int						li_room_check_coord(char *line);
+int 					li_room_add(t_graph *data, char *name, int *com);
+int						li_room_start_end(t_graph *data, int *com);
+
+/*
 ** ERROR
 */
 
-void					li_errorempty(char *line);
 void					li_error(void);
 void					li_errormsg(char *msg);
 

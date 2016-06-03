@@ -6,13 +6,18 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 13:40:25 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/03 16:41:54 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/03 18:43:48 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void				li_tube_copy(t_room **tube, t_room *to_link)
+/*
+** If we allready had some rooms in our tube array, copy it and add the new
+** one.
+*/
+
+t_room				**li_tube_copy(t_room **tube, t_room *to_link)
 {
 	t_room			**new_tube;
 	int				i;
@@ -26,13 +31,15 @@ void				li_tube_copy(t_room **tube, t_room *to_link)
 		new_tube[i] = tube[i];
 	tube[len] = to_link;
 	free(tube);
-	return (new);
+	return (new_tube);
 }
+
+/*
+** Linking rooms: add room2 in room1 tube array.
+*/
 
 void				li_tube_dig(t_room *room1, t_room *room2)
 {
-	t_room			**new_room1;
-
 	if (room1->tube == NULL)
 	{
 		room1->tube = (t_room**)malloc(sizeof(t_room*));
@@ -64,13 +71,15 @@ t_room				*li_tube_room_find(char *name, t_graph *data)
 ** Rooms are linked with tubes, tubes are given as follows: name1-name2.
 */
 
-int					*li_tube_get(char *line, t_graph *data)
+int					li_tube_get(char *line, t_graph *data)
 {
 	char			**split_line;
 	t_room			*room1;
 	t_room			*room2;
 	int				len;
 
+	room1 = NULL;
+	room2 = NULL;
 	split_line = ft_strsplit(line, '-');
 	len = -1;
 	while (split_line[++len]);

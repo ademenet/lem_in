@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 11:22:41 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/03 15:59:21 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/03 18:38:06 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int 				li_room_add(t_graph *data, char *name, int *com)
 
 	if (data->head == NULL)
 	{
-		room = (t_room*)malloc(sizeof(t_room));
-		room->name = name;
-		room->weight = INT_MAX;
-		room->tube = NULL;
-		room->next = NULL;
+		new = (t_room*)malloc(sizeof(t_room));
+		new->name = name;
+		new->weight = INT_MAX;
+		new->tube = NULL;
+		new->next = NULL;
 	}
 	else
 	{
@@ -65,9 +65,24 @@ int 				li_room_add(t_graph *data, char *name, int *com)
 ** Just check if coordinates are goods: it should be a positive integer only.
 */
 
-int					li_room_check_coord(char *crunch1, char *crunch2)
+int					li_room_check_coord(char *line)
 {
-	if (li_ants_get(crunch1) == -1 || li_ants_get(crunch2) == -1)
+	int				i;
+	long			nb;
+
+	i = 0;
+	nb = 0;
+	if (line[0] == '-')
+		return (-1);
+	while (line[i] != '\0')
+	{
+		if (ft_isdigit(line[i]))
+			i++;
+		else
+			return (-1) ;
+	}
+	nb = ft_atoi(line);
+	if (nb > INT_MAX)
 		return (-1);
 	return (1);
 }
@@ -96,7 +111,8 @@ int					li_room_get(char *line, t_graph *data, int *com)
 		if (split_line[0][len] == '-')
 			return (-1);
 	}
-	if (li_room_check_coord(split_line[1], split_line[2]) == -1)
+	if (li_room_check_coord(split_line[1]) == -1 &&
+		li_room_check_coord(split_line[2]) == -1)
 		return (-1);
 	free(split_line[1]);
 	free(split_line[2]);

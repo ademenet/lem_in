@@ -6,7 +6,7 @@
 #    By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/30 16:59:27 by ademenet          #+#    #+#              #
-#    Updated: 2016/06/01 14:44:18 by ademenet         ###   ########.fr        #
+#    Updated: 2016/06/03 17:25:58 by ademenet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,12 @@ SRC_PATH = ./src
 INC_PATH = ./inc
 OBJ_PATH = ./obj
 
-SRC_NAME =	main.c\
+SRC_NAME =	lem_in.c\
+			li_error.c\
+			li_graph.c\
+			li_parsing.c\
+			li_room.c\
+			li_tube.c
 
 INC_NAME = lem_in.h
 
@@ -38,11 +43,11 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C libft
-	@$(CC) -o $@ $^ libft/libft.a libft/ft_printf/libftprintf.a
+	@$(CC) $(FLAGS) -o $@ $^ libft/libft.a libft/ft_printf/libftprintf.a
 	@echo "\033[1;34mLem_in\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
 
 test: $(OBJ)
-	
+
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
