@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/02 18:50:01 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/03 16:42:03 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** Otherwise, we'll consider it as an error.
 */
 
-int					li_ants_get(char *line, t_lemi *data, int * err)
+int					li_ants_get(char *line, t_graph *data)
 {
 	int				i;
 	long			nb;
@@ -36,7 +36,7 @@ int					li_ants_get(char *line, t_lemi *data, int * err)
 		while (line[i] != '\0')
 			ft_isdigit(line[i]) ? i++ : return (-1) ;
 		nb = ft_atoi(line);
-		if (nb > INT_MAX || nb < INT_MIN)
+		if (nb > INT_MAX)
 			return (-1);
 	}
 	data->ant = (int)nb;
@@ -44,93 +44,49 @@ int					li_ants_get(char *line, t_lemi *data, int * err)
 }
 
 /*
-** The rooms are defined as it: name coord_x coord_y.
+** Sharp means two things: comments (if there is only one then text) or
+** commands (two sharps then start or end).
 */
 
-// Renvoit un malloc ici
-
-int					li_room_get(char *line, t_lemi *data, int *err)
+int					li_sharp_handler(char *line)
 {
-	char			**split_line;
-	int				coord_x;
-	int				coord_y;
-	int				len;
-
-	split_line = ft_strsplit(line, ' ');
-	len = 0;
-	while (split_line[len])
-		len++;
-	if (len != 3 && split_line[0][0] == 'L')
-		return (-1);
-	len = -1;
-	while (split_line[0][++len] != '\0')
-	{
-		if (split_line[0][len] == '-')
-			return (-1);
-	}
-	coord_x = li_ants_get(split_line[1]);
-	coord_y = li_ants_get(split_line[2]);
-	data->name = split_line[0];
-	free(split_line[1]);
-	free(split_line[2]);
-	free(split_line);
-	return (1);
+	if (ft_strcmp(line, "##start"))
+		return (1);
+	else if (ft_strcmp(line, "##end"))
+		return (2);
 }
-
-/*
-** Rooms are linked with tubes, tubes are given as follows: name1-name2.
-*/
-
-// void				*li_get_tube(char *line)
-// {
-// 	char			*id;
-// 	int				i;
-//
-// 	id = ft_strchr(line, '-');
-// 	while (line[i] != id)
-// 		i++;
-// 	ft_strncmp(line, i);
-// }
 
 /*
 **
 */
 
-t_lemi				*li_parsing(t_lemi *data)
+t_graph				*li_parsing(t_graph *data)
 {
 	int				err;
+	int				com;
 	char			*line;
 
-	ret = 0;
-	if (get_next_line(1, &line) != 0)
-		err = li_ants_get(line, &err);
+	err = 0;
+	com = 0;
 	while (get_next_line(1, &line) != 0)
 	{
-		if (err != -1)
-			li_sharp_handler(line, &err);
-		else if (err = -1)
+		ft_putendl(line);
+		if (err == -1)
 			ft_error();
-		else if (err = 1)
-			err = li_room_get(line, data, &err);
+		else if (line[0] == '#')
+			com = li_sharp_handler(line);
+		else if (err == 0)
+			err = li_ants_get(line, data);
+		else if (err == 1)
+			err = li_room_get(line, data, &com);
+		else if (err == 2)
+			err = li_tube_get(line, data);
 	}
+	return (data);
 }
 
-/*
-** Sharps mean two things: comments (if there is only one then text) or
-** instruction (two sharps then start or end).
-*/
 
-int					li_sharp_handler(char *line, int *err)
-{
-	if (ft_strcmp(line, "##start"))
-		// call function handler start
-	else if (ft_strcmp(line, "##end"))
-		// call function handler end
-	else if (line[0] == '#')
-		return (err);
-}
-
-// t_llst		*li_lstnew(t_llst *room)
+// t_room		*li_lstnew(t_room *room)
 // {
 // 	if (room)
 // 	{
@@ -139,14 +95,14 @@ int					li_sharp_handler(char *line, int *err)
 // 	return ()
 // }
 
-// t_llst		**li_new_malloc(t_llst **tube, t_llst *room)
+// t_room		**li_new_malloc(t_room **tube, t_room *room)
 // {
-// 	t_llst	**tmp;
+// 	t_room	**tmp;
 
 // 	if (tube)
 // 	{
 // 		tmp = tube;
-// 		tube = (t_llst**)malloc(sizeof(tmp) + sizeof(t_llst*));
+// 		tube = (t_room**)malloc(sizeof(tmp) + sizeof(t_room*));
 // 		free(tmp);
 // 	}
 // 	return (tube);

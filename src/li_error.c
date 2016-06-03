@@ -6,19 +6,19 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 18:39:36 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/02 17:10:44 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/03 13:29:54 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void		li_error(void)
+void				li_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(-1);
 }
 
-void		li_errormsg(char *msg)
+void				li_errormsg(char *msg)
 {
 	perror(msg);
 	exit(-1);

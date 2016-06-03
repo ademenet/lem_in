@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/02 19:02:51 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/03 15:57:08 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,27 @@
 ** room pointer's array and next node pointer.
 */
 
-struct					s_llst
+struct					s_room
 {
 	char				*name;
-	struct s_llst		**tube;
-	struct s_llst		*next;
-}						t_llst;
+	int					weight;
+	struct s_room		**tube;
+	struct s_room		*next;
+}						t_room;
 
 /*
 ** This structure contains useful variables: ant's number, our start pointer,
-** our end pointer and a pointer to the head list of rooms.
+** our end pointer, a pointer to the head list of rooms and bonus.
 */
 
-struct					s_lemi
+struct					s_graph
 {
 	int					ant;
-	struct s_llst		*start;
-	struct s_llst		*end;
-	struct s_llst		*head;
-}						t_lemi;
+	struct s_room		*start;
+	struct s_room		*end;
+	struct s_room		*head;
+	char				bonus[6];
+}						t_graph;
 
 /*
 ** Ants structure: WIP
@@ -50,8 +52,12 @@ struct					s_lemi
 struct					s_ant
 {
 	char				*id;
-	struct s_llst		*loc;
+	struct s_room		*loc;
 }						t_ant;
+
+/*
+** Enum for verbose error handler:
+*/
 
 enum					e_err
 {
@@ -61,11 +67,17 @@ enum					e_err
 };
 
 /*
-** LEXER-PARSER
+** PARSER
 */
 
-int						li_ants_get(char *line, t_lemi *data, int * err);
+int						li_ants_get(char *line, t_graph *data, int * err);
 char					*li_room_get(char *line, int *coord_x, int *coord_y);
+
+/*
+** GRAPH
+*/
+
+void					li_new_graph(t_graph *data);
 
 /*
 ** ERROR
