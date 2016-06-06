@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/06 14:18:33 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/06 14:31:25 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int					li_ants_get(char *line, t_graph *data)
 
 int					li_sharp_handler(char *line)
 {
-	if (ft_strcmp(line, "##start"))
+	if (ft_strcmp("##start", line) == 0)
 		return (1);
-	else if (ft_strcmp(line, "##end"))
+	else if (ft_strcmp("##end", line) == 0 )
 		return (2);
 	else
 		return (0);
