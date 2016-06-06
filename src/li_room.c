@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 11:22:41 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/06 09:43:59 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/06 14:19:33 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int 				li_room_add(t_graph *data, char *name, int *com)
 		new->weight = INT_MAX;
 		new->tube = NULL;
 		new->next = NULL;
+		data->head = new;
 	}
 	else
 	{
@@ -100,12 +101,9 @@ int					li_room_get(char *line, t_graph *data, int *com)
 
 	split_line = ft_strsplit(line, ' ');
 	len = -1;
-	while (split_line[++len])
-	{
-		DB("li_room_get")
-	}
+	while (split_line[++len]);
 	if (len == 1)
-		return (2);
+		return (li_tube_get(line, data));
 	if (len != 3 && split_line[0][0] == 'L')
 		return (-1);
 	len = -1;

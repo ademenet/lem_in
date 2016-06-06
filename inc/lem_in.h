@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/06 09:55:26 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/06 10:14:19 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "../libft/libft.h"
 # include "../libft/ft_printf/include/fpf_printf.h"
 
+# define DBfct fprintf(stderr, "%s\n", __FUNCTION__); // A EFFACER !
 # define DB(text) fprintf(stderr, "%s\n", text); // A EFFACER !
 # define DBint(text, integer) fprintf(stderr, "%s == [%d]\n", text, integer); // A EFFACER !
 
