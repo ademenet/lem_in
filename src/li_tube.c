@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 13:40:25 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/06 14:19:02 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/06 15:28:36 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_room				*li_tube_room_find(char *name, t_graph *data)
 			return (tmp);
 		tmp = tmp->next;
 	}
-	return (tmp);
+	return (NULL);
 }
 
 /*
@@ -78,8 +78,6 @@ int					li_tube_get(char *line, t_graph *data)
 	t_room			*room2;
 	int				len;
 
-	room1 = NULL;
-	room2 = NULL;
 	split_line = ft_strsplit(line, '-');
 	len = -1;
 	while (split_line[++len]);
@@ -87,7 +85,7 @@ int					li_tube_get(char *line, t_graph *data)
 		return (-1);
 	room1 = li_tube_room_find(split_line[0], data);
 	room2 = li_tube_room_find(split_line[1], data);
-	if (room1 == NULL && room2 == NULL)
+	if (room1 == NULL || room2 == NULL)
 		return (-1);
 	li_tube_dig(room1, room2);
 	li_tube_dig(room2, room1);
