@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/06 15:25:19 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/06 18:00:32 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int						li_room_start_end(t_graph *data, int *com);
 ** ERROR
 */
 
+int						li_check_valid(t_graph *data);
 void					li_error(void);
 void					li_errormsg(char *msg);
 

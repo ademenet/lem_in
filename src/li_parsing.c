@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/06 14:31:25 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/06 17:04:10 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,7 @@ t_graph				li_parsing(t_graph *data)
 	while (get_next_line(0, &line) > 0)
 	{
 		ft_putendl(line);
-		if (err == -1)
-			li_error();
-		else if (line[0] == '#')
+		if (line[0] == '#')
 			com = li_sharp_handler(line);
 		else if (err == 0)
 			err = li_ants_get(line, data);
@@ -91,5 +89,7 @@ t_graph				li_parsing(t_graph *data)
 		else if (err == 2)
 			err = li_tube_get(line, data);
 	}
+	if (err == -1)
+		li_error();
 	return (*data);
 }
