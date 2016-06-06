@@ -6,7 +6,7 @@
 #    By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/30 16:59:27 by ademenet          #+#    #+#              #
-#    Updated: 2016/06/03 17:25:58 by ademenet         ###   ########.fr        #
+#    Updated: 2016/06/06 15:46:41 by ademenet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@make -C libft
 	@$(CC) $(FLAGS) -o $@ $^ libft/libft.a libft/ft_printf/libftprintf.a
-	@echo "\033[1;34mLem_in\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
+	@echo "\033[1;34mLem_in\t\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
 
 test: $(OBJ)
 
@@ -56,12 +56,12 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 clean:
 	@make clean -C libft
 	@rm -rf ./obj correctme.sh
-	@echo "\033[1;34mLem_in\t\033[1;33mCleaning obj\t\033[0;32m[OK]\033[0m"
+	@echo "\033[1;34mLem_in\t\t\033[1;33mCleaning obj\t\033[0;32m[OK]\033[0m"
 
 fclean: clean
 	@make fclean -C libft
 	@rm -rf $(NAME)
-	@echo "\033[1;34mLem_in\t\033[1;33mCleaning lib\t\033[0;32m[OK]\033[0m"
+	@echo "\033[1;34mLem_in\t\t\033[1;33mCleaning lib\t\033[0;32m[OK]\033[0m"
 
 re: fclean all
 
