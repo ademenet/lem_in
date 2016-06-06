@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/03 17:34:12 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/06 10:01:57 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 */
 
 /*
-** The first line correspond to ants number, it should be an positive integer.
+** The first line corresponds to ants number, it should be an positive integer.
 ** Otherwise, we'll consider it as an error.
 */
 
@@ -29,6 +29,7 @@ int					li_ants_get(char *line, t_graph *data)
 
 	i = 0;
 	nb = 0;
+	DB("li_ants_get")
 	if (line)
 	{
 		if (line[0] == '-')
@@ -55,6 +56,7 @@ int					li_ants_get(char *line, t_graph *data)
 
 int					li_sharp_handler(char *line)
 {
+	DB("li_sharp_handler")
 	if (ft_strcmp(line, "##start"))
 		return (1);
 	else if (ft_strcmp(line, "##end"))
@@ -77,8 +79,11 @@ t_graph				li_parsing(t_graph *data)
 
 	err = 0;
 	com = 0;
-	while (get_next_line(1, &line) != 0)
+	DB("li_parsing avant boucle")
+	DBint("err", err)
+	while (get_next_line(0, &line) > 0)
 	{
+		DBint("err", err)
 		ft_putendl(line);
 		if (err == -1)
 			li_error();
@@ -91,5 +96,6 @@ t_graph				li_parsing(t_graph *data)
 		else if (err == 2)
 			err = li_tube_get(line, data);
 	}
+	DB("Je sors de la fonction li_parsing")
 	return (*data);
 }

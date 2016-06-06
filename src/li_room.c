@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 11:22:41 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/03 18:38:06 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/06 09:43:59 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,10 @@ int					li_room_get(char *line, t_graph *data, int *com)
 
 	split_line = ft_strsplit(line, ' ');
 	len = -1;
-	while (split_line[++len]);
+	while (split_line[++len])
+	{
+		DB("li_room_get")
+	}
 	if (len == 1)
 		return (2);
 	if (len != 3 && split_line[0][0] == 'L')

@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/03 18:42:57 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/06 09:55:26 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <limits.h>
 # include "../libft/libft.h"
 # include "../libft/ft_printf/include/fpf_printf.h"
+
+# define DB(text) fprintf(stderr, "%s\n", text); // A EFFACER !
+# define DBint(text, integer) fprintf(stderr, "%s == [%d]\n", text, integer); // A EFFACER !
 
 typedef struct s_room	t_room;
 typedef struct s_graph	t_graph;
