@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 11:22:41 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/06 15:53:46 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/07 12:17:41 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int					li_room_start_end(t_graph *data, int *com)
 	else if (*com == 2 && data->end == NULL)
 		data->end = data->head;
 	else if (*com == 1 && data->start != NULL)
+	{
+		DB("je dois retourner -1 !!!")
 		return (-1);
+	}
 	else if (*com == 2 && data->start != NULL)
 		return (-1);
 	if (*com != 0)

@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/06 17:04:10 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/07 13:23:01 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_graph				li_parsing(t_graph *data)
 	while (get_next_line(0, &line) > 0)
 	{
 		ft_putendl(line);
-		if (line[0] == '#')
+		if (line[0] == '#' && com == 0)
 			com = li_sharp_handler(line);
 		else if (err == 0)
 			err = li_ants_get(line, data);
