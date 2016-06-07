@@ -6,7 +6,7 @@
 
 test_errors()
 {
-	for i in {1..17}
+	for i in {1..18}
 	do
 		printf "\033[34;1m./lem_in < test/test_err%d.map\n\033[0m" $i
 		./lem_in < test/test_err$i.map
