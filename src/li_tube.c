@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 13:40:25 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/06 17:06:41 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/08 16:39:36 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_room				**li_tube_copy(t_room **tube, t_room *to_link)
 	i = -1;
 	len = -1;
 	while (tube[++len]);
-	new_tube = (t_room**)malloc(sizeof(t_room*) * (len + 1));
+	new_tube = (t_room**)malloc(sizeof(t_room*) * (len + 2));
 	while (++i < len)
 		new_tube[i] = tube[i];
 	tube[len] = to_link;
