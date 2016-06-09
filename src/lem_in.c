@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/06 17:59:20 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/09 16:37:45 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int					main(void)
 	}
 	fprintf(stderr, "start == %s\n", data.start->name);
 	fprintf(stderr, "end == %s\n", data.end->name);
+	while (1);
 	return (0);
 }

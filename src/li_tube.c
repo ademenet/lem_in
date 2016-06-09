@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 13:40:25 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/08 16:39:36 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/09 16:58:55 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ t_room				**li_tube_copy(t_room **tube, t_room *to_link)
 
 	i = -1;
 	len = -1;
-	while (tube[++len]);
+	while (tube[++len] != NULL);
 	new_tube = (t_room**)malloc(sizeof(t_room*) * (len + 2));
-	while (++i < len)
+	while (tube[++i] != NULL)
 		new_tube[i] = tube[i];
 	tube[len] = to_link;
 	free(tube);
@@ -42,8 +42,9 @@ void				li_tube_dig(t_room *room1, t_room *room2)
 {
 	if (room1->tube == NULL)
 	{
-		room1->tube = (t_room**)malloc(sizeof(t_room*));
+		room1->tube = (t_room**)malloc(sizeof(t_room*) + 1);
 		room1->tube[0] = room2;
+		room1->tube = NULL;
 	}
 	else if (room1->tube != NULL)
 		room1->tube = li_tube_copy(room1->tube, room2);
