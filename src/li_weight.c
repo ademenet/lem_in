@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 14:05:42 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/09 14:46:15 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/09 18:53:32 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,31 @@
 ** Here we assign weight.
 */
 
-int					li_weight(t_graph *data, t_room *cur)
+int					li_weight_recursive(t_graph *data, t_room *cur, int weight)
 {
+	static int		depth;
 	int				i;
 
-	if (cur == data->start)
+	if (cur == data->start && depth == 0)
 		return (1);
-	cur->weight = 0;
 	i = 0;
-	while (cur->tube[i])
+	while (cur->tube[i] != NULL)
 	{
-		cur->tube[i]->weight = cur->weight + 1;
+		li_weight_recursive(data, cur, weight + 1);
+		if (cur->weight == -1)
+			cur->weight = weight;
+
 	}
 	return (0);
 }
 
+int					li_weight(t_graph *data)
+{
+	int				weight;
 	t_room			*cur;
+
 	cur = data->end;
+	cur->weight = 0;
+	weight = 1;
+	while (li_weight_recursive(data, cur, weight));
+}

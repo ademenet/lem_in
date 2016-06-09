@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 11:22:41 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/09 14:43:09 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/09 18:53:16 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int 				li_room_add(t_graph *data, char *name, int *com)
 	{
 		new = (t_room*)malloc(sizeof(t_room));
 		new->name = name;
-		new->weight = INT_MAX;
+		new->weight = -1;
 		new->tube = NULL;
 		new->next = NULL;
 		data->head = new;
@@ -57,7 +57,7 @@ int 				li_room_add(t_graph *data, char *name, int *com)
 		data->head = new;
 		new->tube = NULL;
 		new->name = name;
-		new->weight = INT_MAX;
+		new->weight = -1;
 	}
 	return (li_room_start_end(data, com));
 }
