@@ -6,7 +6,7 @@
 #    By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/30 16:59:27 by ademenet          #+#    #+#              #
-#    Updated: 2016/06/06 15:46:41 by ademenet         ###   ########.fr        #
+#    Updated: 2016/06/10 09:51:48 by ademenet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRC_NAME =	lem_in.c\
 			li_graph.c\
 			li_parsing.c\
 			li_room.c\
-			li_tube.c
+			li_tube.c\
+			li_weight.c
 
 INC_NAME = lem_in.h
 

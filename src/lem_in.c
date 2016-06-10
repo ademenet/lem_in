@@ -6,11 +6,33 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/09 16:37:45 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/10 13:50:51 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
+
+void				li_dispdeb(t_graph *data)
+{
+	t_room *tmp;
+	int i = 0;
+	tmp = data->head;
+
+	printf("----------------\n");
+	while (tmp)
+	{
+		printf("%s\n", tmp->name);
+		while (tmp->tube[i] != NULL)
+		{
+			printf("\t->%s\n", tmp->tube[i]->name);
+			i++;
+			DB("..1")
+		}
+		DB("..2")
+		tmp = tmp->next;
+		i = 0;
+	}
+}
 
 int					li_check_valid(t_graph *data)
 {
@@ -28,15 +50,10 @@ int					main(void)
 	data = li_parsing(&data);
 	if (li_check_valid(&data))
 		li_error();
-	t_room			*tmp;
-	tmp = data.head;
-	while (tmp)
-	{
-		fprintf(stderr, "%s\n", tmp->name);
-		tmp = tmp->next;
-	}
-	fprintf(stderr, "start == %s\n", data.start->name);
-	fprintf(stderr, "end == %s\n", data.end->name);
-	while (1);
+	li_dispdeb(&data);
+
+	// tests
+	li_weight(&data);
+
 	return (0);
 }
