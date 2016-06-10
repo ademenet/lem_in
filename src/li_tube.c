@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 13:40:25 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/10 17:23:40 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/10 17:37:11 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_room				**li_tube_copy(t_room **tube, t_room *to_link)
 
 	i = -1;
 	len = -1;
-	while (tube[++len] != NULL);
+	while (tube[++len] != NULL)
+		;
 	new_tube = (t_room**)malloc(sizeof(t_room*) * (len + 2));
 	while (tube[++i] != NULL)
 		new_tube[i] = tube[i];
@@ -82,7 +83,8 @@ int					li_tube_get(char *line, t_graph *data)
 
 	split_line = ft_strsplit(line, '-');
 	len = -1;
-	while (split_line[++len]);
+	while (split_line[++len])
+		;
 	if (len != 2)
 		return (-1);
 	room1 = li_tube_room_find(split_line[0], data);

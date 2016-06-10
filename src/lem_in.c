@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/10 13:50:51 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/10 17:47:32 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void				li_dispdeb(t_graph *data)
 		{
 			printf("\t->%s\n", tmp->tube[i]->name);
 			i++;
-			DB("..1")
 		}
-		DB("..2")
 		tmp = tmp->next;
 		i = 0;
 	}
@@ -50,7 +48,6 @@ int					main(void)
 	data = li_parsing(&data);
 	if (li_check_valid(&data))
 		li_error();
-	li_dispdeb(&data);
 
 	// tests
 	li_weight(&data);

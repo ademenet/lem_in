@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 11:22:41 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/09 18:53:16 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/10 17:38:48 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int					li_room_start_end(t_graph *data, int *com)
 ** Add a new room to the list beginning. Check also if its room is start or end.
 */
 
-int 				li_room_add(t_graph *data, char *name, int *com)
+int					li_room_add(t_graph *data, char *name, int *com)
 {
 	t_room			*new;
 
@@ -80,7 +80,7 @@ int					li_room_check_coord(char *line)
 		if (ft_isdigit(line[i]))
 			i++;
 		else
-			return (-1) ;
+			return (-1);
 	}
 	nb = ft_atoi(line);
 	if (nb > INT_MAX)
@@ -101,7 +101,8 @@ int					li_room_get(char *line, t_graph *data, int *com)
 
 	split_line = ft_strsplit(line, ' ');
 	len = -1;
-	while (split_line[++len]);
+	while (split_line[++len])
+		;
 	if (len == 1)
 		return (li_tube_get(line, data));
 	if (len != 3)

@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/10 10:29:25 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/10 16:29:22 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,5 @@ void					li_errormsg(char *msg);
 
 // DEBUG A EFFACER
 void					li_dispdeb(t_graph *data);
-
 
 #endif
