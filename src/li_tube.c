@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 13:40:25 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/10 13:50:24 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/10 17:23:40 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_room				**li_tube_copy(t_room **tube, t_room *to_link)
 	while (tube[++i] != NULL)
 		new_tube[i] = tube[i];
 	new_tube[len] = to_link;
+	new_tube[len + 1] = NULL;
 	free(tube);
 	return (new_tube);
 }
