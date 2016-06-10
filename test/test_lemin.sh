@@ -16,7 +16,7 @@ test_errors1()
 
 test_errors2()
 {
-	for i in {23..44}
+	for i in {23..45}
 	do
 		printf "\033[34;1m./lem_in < test/test_err%d.map\n\033[0m" $i
 		./lem_in < test/test_err$i.map
@@ -67,7 +67,7 @@ while true; do
 		[1]\tValids from 1 to 15\n
 		[2]\tValids from 16 to 29\n
 		[3]\tErrors from 1 to 22\n
-		[4]\tErrors from 23 to 44\n
+		[4]\tErrors from 23 to 45\n
 		[5-i]\tBig with i from 1 to 5\n
 		[q]\tQuit\n
 		\033[0m"
