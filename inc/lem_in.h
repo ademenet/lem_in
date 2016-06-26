@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/10 16:29:22 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/26 20:07:54 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ struct					s_room
 	int					weight;
 	t_room				**tube;
 	t_room				*next;
+	t_room				*prev;
 };
 
 /*
