@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/26 20:07:54 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/27 15:08:16 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ struct					s_graph
 	struct s_room		*start;
 	struct s_room		*end;
 	struct s_room		*head;
+	struct s_room		*queue;
 	char				bonus[6];
 };
 
@@ -78,9 +79,12 @@ enum					e_err
 ** WEIGHT
 */
 
-int						li_weight_recursive(t_graph *data, t_room *cur,
-						int weight);
-int						li_weight(t_graph *data);
+// int						li_weight_recursive(t_graph *data, t_room *cur,
+// 						int weight);
+// int						li_weight(t_graph *data);
+void					li_check_for_lonely_room(t_graph *data);
+int						li_BFS(t_graph *data);
+int						li_weight_child(t_graph *data);
 
 /*
 ** GRAPH
@@ -123,6 +127,6 @@ void					li_error(void);
 void					li_errormsg(char *msg);
 
 // DEBUG A EFFACER
-void					li_dispdeb(t_graph *data);
+void					li_display_debug(t_graph *data);
 
 #endif

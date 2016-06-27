@@ -6,29 +6,22 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/10 17:47:32 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/27 15:14:29 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void				li_dispdeb(t_graph *data)
+void				li_display_debug(t_graph *data)
 {
-	t_room *tmp;
-	int i = 0;
-	tmp = data->head;
+	t_room 			*tmp;
 
+	tmp = data->queue;
 	printf("----------------\n");
 	while (tmp)
 	{
-		printf("%s\n", tmp->name);
-		while (tmp->tube[i] != NULL)
-		{
-			printf("\t->%s\n", tmp->tube[i]->name);
-			i++;
-		}
+		printf("name: %10s, weight: %5d\n", tmp->name, tmp->weight);
 		tmp = tmp->next;
-		i = 0;
 	}
 }
 
@@ -48,9 +41,8 @@ int					main(void)
 	data = li_parsing(&data);
 	if (li_check_valid(&data))
 		li_error();
-
-	// tests
-	li_weight(&data);
-
+	li_check_for_lonely_room(&data);
+	li_BFS(&data);
+	li_display_debug(&data);
 	return (0);
 }
