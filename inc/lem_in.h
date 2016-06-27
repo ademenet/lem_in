@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/27 15:08:16 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/27 18:48:44 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include "../libft/libft.h"
 # include "../libft/ft_printf/include/fpf_printf.h"
 
-# define DBfct fprintf(stderr, "\n%s\n", __FUNCTION__); // A EFFACER !
+# include <unistd.h>
+# define DBfct fprintf(stderr, "%s\n", __FUNCTION__); // A EFFACER !
 # define DB(text) fprintf(stderr, "%s\n", text); // A EFFACER !
 # define DBint(text, integer) fprintf(stderr, "%s == [%d]\n", text, integer); // A EFFACER !
 
@@ -127,6 +128,8 @@ void					li_error(void);
 void					li_errormsg(char *msg);
 
 // DEBUG A EFFACER
-void					li_display_debug(t_graph *data);
+void					li_display_debug(t_graph *data, t_room *start);
+void					li_display_initial_list(t_graph *data, t_room *start);
+
 
 #endif

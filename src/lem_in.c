@@ -6,23 +6,39 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/27 15:14:29 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/27 18:03:22 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void				li_display_debug(t_graph *data)
+void				li_display_debug(t_graph *data, t_room *start)
 {
+	DBfct
 	t_room 			*tmp;
 
-	tmp = data->queue;
-	printf("----------------\n");
+	tmp = start;
 	while (tmp)
 	{
 		printf("name: %10s, weight: %5d\n", tmp->name, tmp->weight);
+		// sleep(1);
 		tmp = tmp->next;
 	}
+}
+
+void				li_display_initial_list(t_graph *data, t_room *start)
+{
+	t_room 			*tmp;
+
+	tmp = start;
+	while (tmp)
+	{
+		printf("[%5s]", tmp->name);
+		if (tmp->next != NULL)
+			printf(">");
+		tmp = tmp->next;
+	}
+	printf("\n");
 }
 
 int					li_check_valid(t_graph *data)
@@ -41,8 +57,11 @@ int					main(void)
 	data = li_parsing(&data);
 	if (li_check_valid(&data))
 		li_error();
+	li_display_initial_list(&data, data.head);
 	li_check_for_lonely_room(&data);
+	li_display_initial_list(&data, data.head);
 	li_BFS(&data);
-	li_display_debug(&data);
+	li_display_initial_list(&data, data.queue);
+	li_display_debug(&data, data.queue);
 	return (0);
 }
