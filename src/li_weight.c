@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 14:05:42 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/27 21:00:47 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/28 10:22:57 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,19 @@ int					li_BFS(t_graph *data)
 		data->head = data->end;
 	}
 	data->queue = data->end;
-	while (data->end->next != NULL && li_weight_child(data))
+	while (data->end->next != NULL || data->head != NULL)
 	{
 		li_display_initial_list(data, data->queue);
+		li_display_debug(data, data->queue);
 
-		// if (li_weight_child(data) != 1)
-		// 	li_error();
-		if (data->head->prev != NULL)
-			data->head = data->head->prev;
+		li_weight_child(data);
+
+		// printf("data->head->name == [%s]\n", data->head->name);
+		printf("data->head->prev == [%p]\n", data->head->prev);
+		printf("data->head == [%p]\n", data->head);
+
+		data->head = data->head->prev;
+
 		sleep(1);
 	}
 	return (1);
@@ -81,27 +86,28 @@ int					li_weight_child(t_graph *data)
 	int				i;
 
 	i = -1;
-	while (data->head->tube[++i] != NULL)
+	if (data->head != NULL)
 	{
-		if (data->head->tube[i]->weight == -1)
+		while (data->head->tube[++i] != NULL)
 		{
-			data->head->tube[i]->weight = data->head->weight + 1;
-			if (data->head->tube[i]->next != NULL && data->head->tube[i]->prev != NULL)
+			if (data->head->tube[i]->weight == -1)
 			{
-				data->head->tube[i]->next->prev = data->head->tube[i]->prev;
+				data->head->tube[i]->weight = data->head->weight + 1;
+				if (data->head->tube[i]->next != NULL && data->head->tube[i]->prev != NULL)
+					data->head->tube[i]->next->prev = data->head->tube[i]->prev;
+				else
+					data->head->tube[i]->prev->next = NULL;
+				if (data->head->tube[i]->prev != NULL && data->head->tube[i]->next != NULL)
+					data->head->tube[i]->prev->next = data->head->tube[i]->next;
+				else
+					data->head->tube[i]->prev->next = NULL;
+				data->head->tube[i]->next = data->queue;
+				data->queue->prev = data->head->tube[i];
+				data->head->tube[i]->prev = NULL;
+				data->queue = data->head->tube[i];
 			}
-			else
-				data->head->tube[i]->prev->next = NULL;
-			if (data->head->tube[i]->prev != NULL && data->head->tube[i]->next != NULL)
-				data->head->tube[i]->prev->next = data->head->tube[i]->next;
-			else
-				data->head->tube[i]->prev->next = NULL;
-
-			data->head->tube[i]->next = data->queue;
-			data->queue->prev = data->head->tube[i];
-			data->head->tube[i]->prev = NULL;
-			data->queue = data->head->tube[i];
 		}
+		return (1);
 	}
-	return (1);
+	return (-1);
 }
