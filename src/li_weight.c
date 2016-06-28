@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 14:05:42 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/28 10:22:57 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/28 10:57:51 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void				li_check_for_lonely_room(t_graph *data)
 {
-	DBfct
+	// DBfct
 	t_room			*cur;
 	t_room			*to_del;
 
@@ -39,6 +39,8 @@ void				li_check_for_lonely_room(t_graph *data)
 			cur = cur->next;
 			if (data->head == to_del)
 				data->head = cur;
+			free(to_del->name);
+			free(to_del->tube);
 			free(to_del);
 		}
 		else
@@ -46,9 +48,26 @@ void				li_check_for_lonely_room(t_graph *data)
 	}
 }
 
+void				li_kill_those_separatists(t_graph *data)
+{
+	t_room			*cur;
+	t_room			*to_del;
+
+	cur = data->end->next;
+	data->end->next = NULL;
+	while (cur)
+	{
+		to_del = cur;
+		cur = cur->next;
+		free(to_del->name);
+		free(to_del->tube);
+		free(to_del);
+	}
+}
+
 int					li_BFS(t_graph *data)
 {
-	DBfct
+	// DBfct
 	data->end->weight = 0;
 	if (data->head != data->end)
 	{
@@ -62,27 +81,19 @@ int					li_BFS(t_graph *data)
 		data->head = data->end;
 	}
 	data->queue = data->end;
-	while (data->end->next != NULL || data->head != NULL)
+	while (data->end->next != NULL)
 	{
-		li_display_initial_list(data, data->queue);
-		li_display_debug(data, data->queue);
-
-		li_weight_child(data);
-
-		// printf("data->head->name == [%s]\n", data->head->name);
-		printf("data->head->prev == [%p]\n", data->head->prev);
-		printf("data->head == [%p]\n", data->head);
-
-		data->head = data->head->prev;
-
-		sleep(1);
+		if (li_weight_child(data) == -1)
+			li_kill_those_separatists(data);
+		if (data->head != NULL)
+			data->head = data->head->prev;
 	}
 	return (1);
 }
 
 int					li_weight_child(t_graph *data)
 {
-	DBfct
+	// DBfct
 	int				i;
 
 	i = -1;

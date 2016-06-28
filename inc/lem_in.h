@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/27 18:48:44 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/28 10:49:58 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ enum					e_err
 // 						int weight);
 // int						li_weight(t_graph *data);
 void					li_check_for_lonely_room(t_graph *data);
+void					li_kill_those_separatists(t_graph *data);
 int						li_BFS(t_graph *data);
 int						li_weight_child(t_graph *data);
 

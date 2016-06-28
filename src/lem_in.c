@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/27 18:03:22 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/28 11:19:08 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void				li_display_debug(t_graph *data, t_room *start)
 {
-	DBfct
+	// DBfct
 	t_room 			*tmp;
 
 	tmp = start;
@@ -43,7 +43,8 @@ void				li_display_initial_list(t_graph *data, t_room *start)
 
 int					li_check_valid(t_graph *data)
 {
-	if (data->start == NULL || data->end == NULL)
+	if (data->start == NULL || data->end == NULL ||
+		data->start->tube == NULL || data->end->tube == NULL)
 		return (1);
 	return (0);
 }
@@ -57,11 +58,11 @@ int					main(void)
 	data = li_parsing(&data);
 	if (li_check_valid(&data))
 		li_error();
-	li_display_initial_list(&data, data.head);
+	// li_display_initial_list(&data, data.head);
 	li_check_for_lonely_room(&data);
-	li_display_initial_list(&data, data.head);
+	// li_display_initial_list(&data, data.head);
 	li_BFS(&data);
-	li_display_initial_list(&data, data.queue);
+	// li_display_initial_list(&data, data.queue);
 	li_display_debug(&data, data.queue);
 	return (0);
 }
