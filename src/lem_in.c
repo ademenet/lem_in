@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/28 11:19:08 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/28 11:32:41 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ int					main(void)
 	li_check_for_lonely_room(&data);
 	// li_display_initial_list(&data, data.head);
 	li_BFS(&data);
-	// li_display_initial_list(&data, data.queue);
+	if (li_find_paths(&data))
+		li_error();
+	li_display_initial_list(&data, data.queue);
 	li_display_debug(&data, data.queue);
 	return (0);
 }
