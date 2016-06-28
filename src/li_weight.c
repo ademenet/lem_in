@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 14:05:42 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/28 10:57:51 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/28 18:56:17 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void				li_kill_those_separatists(t_graph *data)
 	while (cur)
 	{
 		to_del = cur;
+		if (to_del == data->start) // peut etre que ca peut foutre le bazard car je ne sais pas si ca free bien
+			data->start = NULL;
 		cur = cur->next;
 		free(to_del->name);
 		free(to_del->tube);

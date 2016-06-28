@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/28 11:32:41 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/28 19:07:34 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,18 @@ void				li_display_initial_list(t_graph *data, t_room *start)
 	printf("\n");
 }
 
+void				li_display_path(t_path *path)
+{
+	t_path			*f;
+
+	f = path;
+	while (f)
+	{
+		printf("name: %8s | ant_id: %2d\n", f->name, f->ant_id);
+		f = f->next;
+	}
+}
+
 int					li_check_valid(t_graph *data)
 {
 	if (data->start == NULL || data->end == NULL ||
@@ -53,6 +65,7 @@ int					li_check_valid(t_graph *data)
 int					main(void)
 {
 	t_graph			data;
+	t_path			*shpath;
 
 	li_new_graph(&data);
 	data = li_parsing(&data);
@@ -62,9 +75,14 @@ int					main(void)
 	li_check_for_lonely_room(&data);
 	// li_display_initial_list(&data, data.head);
 	li_BFS(&data);
-	if (li_find_paths(&data))
-		li_error();
+	// if (li_find_paths(&data))
+	// 	li_error();
 	li_display_initial_list(&data, data.queue);
 	li_display_debug(&data, data.queue);
+
+	shpath = li_find_path(&data);
+	li_display_path(shpath);
+	li_display_debug(&data, data.queue);
+
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/28 11:39:30 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/28 18:11:54 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 typedef struct s_room	t_room;
 typedef struct s_graph	t_graph;
+typedef struct s_path	t_path;
 
 /*
 ** This structure contains our graph: room's name (aka identifier),
@@ -38,6 +39,17 @@ struct					s_room
 	t_room				**tube;
 	t_room				*next;
 	t_room				*prev;
+};
+
+/*
+** Paths are lists, where ants are integers.
+*/
+
+struct					s_path
+{
+	char				*name;
+	int					ant_id;
+	struct s_path		*next;
 };
 
 /*
@@ -55,15 +67,6 @@ struct					s_graph
 	char				bonus[6];
 };
 
-/*
-** Ants structure: WIP
-*/
-
-struct					s_ant
-{
-	char				*id;
-	struct s_room		*loc;
-}						t_ant;
 
 /*
 ** Enum for verbose error handler:
@@ -80,9 +83,6 @@ enum					e_err
 ** WEIGHT
 */
 
-// int						li_weight_recursive(t_graph *data, t_room *cur,
-// 						int weight);
-// int						li_weight(t_graph *data);
 void					li_check_for_lonely_room(t_graph *data);
 void					li_kill_those_separatists(t_graph *data);
 int						li_BFS(t_graph *data);
@@ -92,7 +92,11 @@ int						li_weight_child(t_graph *data);
 ** PATHS
 */
 
-int						li_find_paths(t_graph *data);
+t_path					*li_new_path(char *name, int ant_id);
+void					li_add_path(t_path *list, t_path *new);
+t_path					*li_build_path(t_path *path, char *name);
+t_path					*li_find_path(t_graph *data);
+
 
 /*
 ** GRAPH
@@ -137,6 +141,6 @@ void					li_errormsg(char *msg);
 // DEBUG A EFFACER
 void					li_display_debug(t_graph *data, t_room *start);
 void					li_display_initial_list(t_graph *data, t_room *start);
-
+void					li_display_path(t_path *path);
 
 #endif
