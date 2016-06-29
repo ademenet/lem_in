@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 11:22:41 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/28 15:21:04 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 13:14:30 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ int					li_room_check_coord(char *line)
 /*
 ** The rooms are defined as it: name coord_x coord_y.
 */
-
-// Liste malloc ici
 
 int					li_room_get(char *line, t_graph *data, int *com)
 {

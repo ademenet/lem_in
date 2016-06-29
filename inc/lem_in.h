@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 11:48:03 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 13:42:30 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,10 @@ void					li_display(t_path *path, int ants);
 
 void					li_check_for_lonely_room(t_graph *data);
 void					li_kill_those_separatists(t_graph *data);
-int						li_BFS(t_graph *data);
+int						li_bfs(t_graph *data);
 int						li_weight_child(t_graph *data);
+void					li_weight_child2(t_graph *data, int *i);
+
 
 /*
 ** PATHS
@@ -104,6 +106,8 @@ int						li_weight_child(t_graph *data);
 t_path					*li_new_path(char *name, int ant_id);
 void					li_add_path(t_path *list, t_path *new);
 t_path					*li_build_path(t_path *path, char *name);
+void					li_room_visiting(t_graph *data, t_room *nxt,
+						t_path *path, int *w);
 t_path					*li_find_path(t_graph *data);
 
 
@@ -146,6 +150,12 @@ int						li_room_start_end(t_graph *data, int *com);
 int						li_check_valid(t_graph *data);
 void					li_error(void);
 void					li_errormsg(char *msg);
+
+/*
+** CLEAN
+*/
+
+void					li_clean_one_elem(t_room *to_del);
 
 // DEBUG A EFFACER
 void					li_display_debug(t_graph *data, t_room *start);

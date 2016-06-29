@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 19:20:02 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 11:48:38 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 13:04:22 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void				li_ants_crawling(t_path *cur)
 	{
 		if (cur->prev != NULL)
 			cur->ant_id = cur->prev->ant_id;
-		// if (cur == path)
-		// 	cur->ant_id = cur->ant_id + 1;
 		cur = cur->prev;
 	}
 }
