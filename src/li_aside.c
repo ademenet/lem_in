@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:40:15 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 13:43:33 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 23:15:47 by alain            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,10 @@ void				li_weight_child2(t_graph *data, int *i)
 		data->head->tube[*i]->prev = NULL;
 		data->queue = data->head->tube[*i];
 	}
+}
+
+void				li_bonus(char **argv, t_graph *data)
+{
+	if (ft_strcmp(argv[1], "-v"))
+		data->bonus[0] = 1;
 }

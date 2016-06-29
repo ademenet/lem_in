@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 14:06:03 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 23:15:19 by alain            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,13 @@ int					li_check_valid(t_graph *data)
 }
 
 // Yaura un malloc pour data
-int					main(void)
+int					main(int argc, char **argv)
 {
 	t_graph			data;
 	t_path			*shpath;
 
+	if (argc > 1)
+		li_bonus(argv, &data);
 	li_new_graph(&data);
 	data = li_parsing(&data);
 	if (li_check_valid(&data))
