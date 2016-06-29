@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/27 17:28:13 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 11:57:13 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ t_graph				li_parsing(t_graph *data)
 	}
 	if (err == -1)
 		li_error();
+	ft_printf("\n");
 	return (*data);
 }

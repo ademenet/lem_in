@@ -6,26 +6,26 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 19:20:02 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 11:34:40 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 11:48:38 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void				li_display_lap(t_path *path, int ants)
+void				li_display_lap(t_path *path, t_path *end, int ants)
 {
 	t_path			*cur;
 
-	cur = path->next;
-	while (cur)
+	cur = end;
+	while (cur != path)
 	{
 		if (cur->ant_id > 0 && cur->ant_id <= ants)
 		{
 			ft_printf("L%d-%s", cur->ant_id, cur->name);
-			if (cur->next != NULL)
+			if (cur->prev != path)
 				ft_printf(" ");
 		}
-		cur = cur->next;
+		cur = cur->prev;
 	}
 	ft_printf("\n");
 }
@@ -55,7 +55,7 @@ void				li_display(t_path *path, int ants)
 	while (end->ant_id != ants)
 	{
 		li_ants_crawling(cur);
-		li_display_lap(path, ants);
+		li_display_lap(path, end, ants);
 		path->ant_id += 1;
 		cur = end;
 	}

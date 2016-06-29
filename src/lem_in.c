@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 10:46:16 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 12:04:25 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ int					main(void)
 	li_BFS(&data);
 	// if (li_find_paths(&data))
 	// 	li_error();
-	li_display_initial_list(&data, data.queue);
-	li_display_debug(&data, data.queue);
+	// li_display_initial_list(&data, data.queue);
+	// li_display_debug(&data, data.queue);
 
 	shpath = li_find_path(&data);
-	li_display_path(shpath);
-	li_display_debug(&data, data.queue);
+	// li_display_path(shpath);
+	// li_display_debug(&data, data.queue);
 
 	li_display(shpath, data.ant);
 

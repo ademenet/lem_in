@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 11:38:20 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 11:37:21 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 11:43:37 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,7 @@ t_path				*li_build_path(t_path *path, char *name)
 	t_path			*new;
 
 	new = li_new_path(name, 0);
-	if (path == NULL)
-		path = li_new_path("", 1);
-	else
-		li_add_path(path, new);
+	li_add_path(path, new);
 	return (path);
 }
 
@@ -67,7 +64,7 @@ t_path				*li_find_path(t_graph *data)
 		li_error();
 	tmp = data->start;
 	w = tmp->weight;
-	path = NULL;
+	path = li_new_path("", 1);
 	while (tmp->weight > 0)
 	{
 		i = -1;
