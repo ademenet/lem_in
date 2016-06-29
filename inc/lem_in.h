@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 13:58:37 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 19:17:24 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # include <unistd.h>
 # define DBfct fprintf(stderr, "%s\n", __FUNCTION__); // A EFFACER !
+# define DBfctf fprintf(stderr, "fin de %s\n", __FUNCTION__); // A EFFACER !
 # define DB(text) fprintf(stderr, "%s\n", text); // A EFFACER !
 # define DBint(text, integer) fprintf(stderr, "%s == [%d]\n", text, integer); // A EFFACER !
 
@@ -104,11 +105,13 @@ void					li_weight_child2(t_graph *data, int *i);
 */
 
 t_path					*li_new_path(char *name, int ant_id);
-void					li_add_path(t_path *list, t_path *new);
-t_path					*li_build_path(t_path *path, char *name);
-void					li_room_visiting(t_graph *data, t_room *nxt,
-						t_path *path, int *w);
-t_path					*li_find_path(t_graph *data);
+void					li_add_path(t_path **list, t_path *new);
+void					li_build_path(t_path **path, char *name);
+t_room					*li_find_min_weight(t_graph *data, t_room *room);
+int						li_create_path(t_graph *data, t_path **path);
+t_path					**li_add_path_to_paths(t_path **paths, t_path *path);
+int						li_have_explored_all_paths(t_graph *data, t_room **tube);
+t_path					**li_find_paths(t_graph *data);
 
 
 /*
@@ -162,6 +165,7 @@ void					li_clean_everything(t_graph *data, t_path *path);
 // DEBUG A EFFACER
 void					li_display_debug(t_graph *data, t_room *start);
 void					li_display_initial_list(t_graph *data, t_room *start);
-void					li_display_path(t_path *path);
+void					li_display_path(t_path **path);
+void 					truc(t_path *path);
 
 #endif
