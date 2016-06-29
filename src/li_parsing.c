@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 11:57:13 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 14:04:39 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ t_graph				li_parsing(t_graph *data)
 			err = li_room_get(line, data, &com);
 		else if (err == 2)
 			err = li_tube_get(line, data);
+		free(line);
 	}
 	if (err == -1)
 		li_error();

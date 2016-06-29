@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 13:19:18 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 14:06:03 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ int					main(void)
 	li_bfs(&data);
 	shpath = li_find_path(&data);
 	li_display(shpath, data.ant);
+	li_clean_everything(&data, shpath);
+	while (1);
 	return (0);
 }
