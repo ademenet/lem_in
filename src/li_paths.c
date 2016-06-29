@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 11:38:20 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/28 18:56:38 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 11:37:21 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_path				*li_new_path(char *name, int ant_id)
 		return (NULL);
 	path->name = name;
 	path->ant_id = ant_id;
+	path->next = NULL;
+	path->prev = NULL;
 	return (path);
 }
 
@@ -35,6 +37,7 @@ void			li_add_path(t_path *list, t_path *new)
 		while (cur->next != NULL)
 			cur = cur->next;
 		cur->next = new;
+		new->prev = cur;
 		new->next = NULL;
 	}
 }
@@ -46,7 +49,7 @@ t_path				*li_build_path(t_path *path, char *name)
 
 	new = li_new_path(name, 0);
 	if (path == NULL)
-		path = new;
+		path = li_new_path("", 1);
 	else
 		li_add_path(path, new);
 	return (path);
@@ -85,6 +88,3 @@ t_path				*li_find_path(t_graph *data)
 	}
 	return (path);
 }
-// il faut ajouter le end a la fin de la liste
-
-// t_path				**li_run_run

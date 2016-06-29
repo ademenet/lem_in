@@ -6,7 +6,7 @@
 #    By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/30 16:59:27 by ademenet          #+#    #+#              #
-#    Updated: 2016/06/28 15:20:05 by ademenet         ###   ########.fr        #
+#    Updated: 2016/06/29 10:47:02 by ademenet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ INC_PATH = ./inc
 OBJ_PATH = ./obj
 
 SRC_NAME =	lem_in.c\
+			li_display.c\
 			li_error.c\
 			li_graph.c\
 			li_parsing.c\

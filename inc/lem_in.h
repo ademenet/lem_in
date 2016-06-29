@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/28 18:11:54 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 11:25:53 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ struct					s_path
 	char				*name;
 	int					ant_id;
 	struct s_path		*next;
+	struct s_path		*prev;
 };
 
 /*
@@ -78,6 +79,14 @@ enum					e_err
 	ERROR_ROOM,
 	ERROR_TUBE
 };
+
+/*
+** DISPLAY
+*/
+
+void					li_display_lap(t_path *path, int ants);
+void					li_ants_crawling(t_path *cur);
+void					li_display(t_path *path, int ants);
 
 /*
 ** WEIGHT
