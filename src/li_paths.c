@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 11:38:20 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 19:22:33 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/29 21:31:13 by alain            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,24 +63,20 @@ t_room		*li_find_min_weight(t_graph *data, t_room *room)
 {
 	int		i;
 	int		wmin;
-	int		err;
 	t_room	*room_min;
 
 	i = 0;
-	room_min = room->tube[i];
-	wmin = room->tube[i]->weight;
-	err = 1;
-	while (room->tube[++i] != NULL)
+	wmin = room->tube[0]->weight;
+	room_min = NULL;
+	while (room->tube[i] != NULL)
 	{
 		if (room->tube[i]->weight < wmin && room->tube[i] != data->start)
 		{
 			wmin = room->tube[i]->weight;
 			room_min = room->tube[i];
-			err++;
 		}
+		i++;
 	}
-	if (li_have_explored_all_paths(data, room->tube) == 1)
-		return (NULL);
 	return (room_min);
 }
 
@@ -144,12 +140,26 @@ t_path		**li_add_path_to_paths(t_path **paths, t_path *path)
 	return (new_paths);
 }
 
+void		li_del_path(t_path **path)
+{
+	t_path	*del;
+	t_path	*to_del;
+
+	del = path;
+	while (del)
+	{
+		to_del = del;
+		del = del->next;
+		free(to_del);
+	}
+}
+
 /*
 ** Returns 1 if there are some rooms to visit. Otherwise, returns 0. It stops
 ** the search for potentials unique paths.
 */
 
-int			li_have_explored_all_paths(t_graph *data, t_room **tube)
+int			li_have_explored_all_paths(t_graph *data, t_room *room)
 {
 	int		i;
 
@@ -164,12 +174,11 @@ int			li_have_explored_all_paths(t_graph *data, t_room **tube)
 }
 
 /*
-** Find every single paths and returns a pointers array.
+** Find every single paths and returns a pointers array with list as path.
 */
 
 t_path		**li_find_paths(t_graph *data)
 {
-	DBfct
 	t_path		**paths;
 	t_path		*path;
 	int			ret;
@@ -177,17 +186,12 @@ t_path		**li_find_paths(t_graph *data)
 	if (!data->start)
 		li_error();
 	ret = 0;
-	while (li_have_explored_all_paths(data, data->start->tube) == 1)
+	while (li_have_explored_all_paths(data, data->start) == 1) // tant que je trouve une case a visiter sur start
 	{
 		if (li_create_path(data, &path))
 			paths = li_add_path_to_paths(paths, path);
-
-		sleep(1);
-		printf("\n\n");
-	li_display_path(paths);
-		printf("\n\n");
-
+		else
+			li_del_path(&path);
 	}
-	DBfctf
 	return (paths);
 }
