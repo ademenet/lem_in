@@ -6,108 +6,11 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 11:38:20 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 21:31:13 by alain            ###   ########.fr       */
+/*   Updated: 2016/06/30 10:47:17 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
-
-t_path		*li_new_path(char *name, int ant_id)
-{
-	DBfct
-	t_path		*path;
-
-	if (!(path = (t_path*)ft_memalloc(sizeof(t_path))))
-		return (NULL);
-	path->name = name;
-	path->ant_id = ant_id;
-	path->next = NULL;
-	path->prev = NULL;
-	DBfctf
-	return (path);
-}
-
-void		li_add_path(t_path **list, t_path *new)
-{
-	DBfct
-	t_path		*cur;
-
-	if (*list && new)
-	{
-		cur = *list;
-		while (cur->next != NULL)
-			cur = cur->next;
-		cur->next = new;
-		new->prev = cur;
-		new->next = NULL;
-	}
-	DBfctf
-}
-
-void		li_build_path(t_path **path, char *name)
-{
-	DBfct
-	t_path		*new;
-
-	new = li_new_path(name, 0);
-	li_add_path(path, new);
-	DBfctf
-}
-
-/*
-** Returns the room with the lowest weight. Otherwise if there is no solutions,
-** that is to say, returns NULL.
-*/
-
-t_room		*li_find_min_weight(t_graph *data, t_room *room)
-{
-	int		i;
-	int		wmin;
-	t_room	*room_min;
-
-	i = 0;
-	wmin = room->tube[0]->weight;
-	room_min = NULL;
-	while (room->tube[i] != NULL)
-	{
-		if (room->tube[i]->weight < wmin && room->tube[i] != data->start)
-		{
-			wmin = room->tube[i]->weight;
-			room_min = room->tube[i];
-		}
-		i++;
-	}
-	return (room_min);
-}
-
-// ATTENTION FREE *path si plus de chemins.
-
-/*
-** Initiate new path by finding min weight until the end. If no solutions,
-** returns 0.
-*/
-
-int			li_create_path(t_graph *data, t_path **path)
-{
-	DBfct
-	t_room		*tmp;
-
-	*path = li_new_path("", 1);
-	tmp = data->start;
-	while (tmp->weight > 0)
-	{
-		if (li_have_explored_all_paths(data, tmp->tube) == 0)
-			return(0);
-		else
-			tmp = li_find_min_weight(data, tmp);
-		li_build_path(path, tmp->name);
-	printf("name = %s\n", tmp->name);
-		if (tmp != data->end)
-			tmp->weight = INT_MAX;
-	}
-	DBfctf
-	return (1);
-}
 
 t_path		**li_add_path_to_paths(t_path **paths, t_path *path)
 {
@@ -133,44 +36,70 @@ t_path		**li_add_path_to_paths(t_path **paths, t_path *path)
 		while (paths[++i] != NULL)
 			new_paths[i] = paths[i];
 		new_paths[i] = path;
-	truc(path);
+		truc(path);// stocke ienb
 		free(paths);
 	}
 	DBfctf
 	return (new_paths);
 }
 
-void		li_del_path(t_path **path)
-{
-	t_path	*del;
-	t_path	*to_del;
 
-	del = path;
-	while (del)
+// ATTENTION FREE *path si plus de chemins.
+
+/*
+** Initiate new path by finding min weight until the end. If no solutions,
+** returns 0.
+*/
+
+int			li_create_path(t_graph *data, t_path **path)
+{
+	DBfct
+	t_room		*tmp;
+	t_room		*tmp_nxt;
+	int			ret;
+
+	*path = li_new_path("", 1);
+	tmp = data->start;
+	while ((ret = li_find_min_weight(data, tmp, &tmp_nxt)))
 	{
-		to_del = del;
-		del = del->next;
-		free(to_del);
+		tmp = tmp_nxt;
+		if (ret == -1)
+		{
+			li_del_path(path);
+			break ;
+		}
+		li_build_path(path, tmp_nxt->name);
+		if (tmp != data->end)
+			tmp->weight = INT_MAX;
 	}
+	DBfctf
+	return (ret);
 }
 
 /*
-** Returns 1 if there are some rooms to visit. Otherwise, returns 0. It stops
-** the search for potentials unique paths.
+** Returns 1 if it finds the lowest weight room. 0 if it reachs the end.
+** And -1 if there isn't rooms to visit anymore.
 */
 
-int			li_have_explored_all_paths(t_graph *data, t_room *room)
+int			li_find_min_weight(t_graph *data, t_room *room, t_room **nxt)
 {
 	int		i;
+	int		wmin;
 
 	i = 0;
-	while (tube[i] != NULL)
+	wmin = INT_MAX;
+	while (room->tube[i] != NULL)
 	{
-		if (tube[i]->weight != INT_MAX && (tube[i] != data->start ||
-			tube[i] != data->end))
-			return (1);
+		if (room->tube[i] == data->end)
+			return (0);
+		else if (room->tube[i]->weight < wmin && room->tube[i] != data->start)
+		{
+			wmin = room->tube[i]->weight;
+			*nxt = room->tube[i];
+		}
+		i++;
 	}
-	return (0);
+	return (wmin == INT_MAX ? -1 : 1);
 }
 
 /*
@@ -179,19 +108,20 @@ int			li_have_explored_all_paths(t_graph *data, t_room *room)
 
 t_path		**li_find_paths(t_graph *data)
 {
+	DBfct
 	t_path		**paths;
 	t_path		*path;
+	t_room		*room;
 	int			ret;
 
 	if (!data->start)
 		li_error();
 	ret = 0;
-	while (li_have_explored_all_paths(data, data->start) == 1) // tant que je trouve une case a visiter sur start
+	while (li_find_min_weight(data, data->start, &room) > -1)
 	{
-		if (li_create_path(data, &path))
+		if (li_create_path(data, &path) == 0)
 			paths = li_add_path_to_paths(paths, path);
-		else
-			li_del_path(&path);
 	}
+	DBfctf
 	return (paths);
 }

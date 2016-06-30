@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 19:17:24 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 10:54:06 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LEM_IN_H
 
 # include <stdio.h>
+# include <stdlib.h>
 # include <limits.h>
 # include "../libft/libft.h"
 # include "../libft/ft_printf/include/fpf_printf.h"
@@ -99,20 +100,25 @@ int						li_bfs(t_graph *data);
 int						li_weight_child(t_graph *data);
 void					li_weight_child2(t_graph *data, int *i);
 
-
 /*
-** PATHS
+** PATH
 */
 
 t_path					*li_new_path(char *name, int ant_id);
 void					li_add_path(t_path **list, t_path *new);
 void					li_build_path(t_path **path, char *name);
-t_room					*li_find_min_weight(t_graph *data, t_room *room);
-int						li_create_path(t_graph *data, t_path **path);
-t_path					**li_add_path_to_paths(t_path **paths, t_path *path);
-int						li_have_explored_all_paths(t_graph *data, t_room **tube);
-t_path					**li_find_paths(t_graph *data);
+void					li_del_path(t_path **path);
 
+/*
+** PATHS
+*/
+
+void					li_one_tube(t_graph *data);
+t_path					**li_add_path_to_paths(t_path **paths, t_path *path);
+int						li_create_path(t_graph *data, t_path **path);
+int						li_find_min_weight(t_graph *data, t_room *room,
+						t_room **nxt);
+t_path					**li_find_paths(t_graph *data);
 
 /*
 ** GRAPH

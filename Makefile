@@ -6,7 +6,7 @@
 #    By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/30 16:59:27 by ademenet          #+#    #+#              #
-#    Updated: 2016/06/29 13:43:51 by ademenet         ###   ########.fr        #
+#    Updated: 2016/06/30 09:51:12 by ademenet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC_NAME =	lem_in.c\
 			li_error.c\
 			li_graph.c\
 			li_parsing.c\
+			li_path.c\
 			li_paths.c\
 			li_room.c\
 			li_tube.c\

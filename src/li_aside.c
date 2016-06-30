@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:40:15 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 13:43:33 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 10:53:42 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,20 @@ void				li_weight_child2(t_graph *data, int *i)
 		data->head->tube[*i]->prev = NULL;
 		data->queue = data->head->tube[*i];
 	}
+}
+
+void				li_one_tube(t_graph *data)
+{
+	int				ant;
+
+	ant = 1;
+	while (ant <= data->ant)
+	{
+		ft_printf("L%d-%s", ant, data->end->name);
+		if (ant < data->ant)
+			ft_printf(" ");
+		ant++;
+	}
+	ft_printf("\n");
+	exit(1);
 }

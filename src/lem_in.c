@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 18:36:05 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 10:48:21 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,14 @@ void				li_display_path(t_path **path)
 	int				i;
 
 	i = 0;
-	f = *path;
+	if (path[i])
+		DB("BUT where ???")
+	f = path[i];
+	DB("BUT where 2 ???")
 	while (path[i] != NULL)
 	{
 		printf("------------\nChemin %d\n------------\n", i);
+		f = path[i];
 		while (f)
 		{
 			printf("name: %8s | ant_id: %2d\n", f->name, f->ant_id);
@@ -84,13 +88,17 @@ int					main(void)
 	t_graph			data;
 	t_path			**paths;
 
+	paths = NULL;
 	li_new_graph(&data);
 	data = li_parsing(&data);
 	if (li_check_valid(&data))
 		li_error();
 	li_check_for_lonely_room(&data);
 	li_bfs(&data);
-	paths = li_find_paths(&data);
+	if (data.start->weight == 1)
+		li_one_tube(&data);
+	else
+		paths = li_find_paths(&data);
 	li_display_path(paths);
 	// li_display(paths, data.ant);
 	// li_clean_everything(&data, shpath);
