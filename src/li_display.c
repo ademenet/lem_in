@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 19:20:02 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 15:18:47 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 15:59:16 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int					li_display(t_path **paths)
 		i++;
 	}
 	ft_printf("\n");
+	printf("%d\n", ret);
 	return (ret);
 }
 
@@ -100,7 +101,7 @@ void				li_determine(t_graph *data, t_path **paths)
 	int				ant;
 
 	ant = 0;
-	while (li_display(paths) > 0)
+	while (li_display(paths) > 1)
 	{
 		if (ant < data->ant)
 		{
@@ -113,12 +114,11 @@ void				li_determine(t_graph *data, t_path **paths)
 		while (paths[i] != NULL)
 		{
 			if (li_path_len(paths[i]) - li_path_len(paths[0]) < data->ant - (ant + 1))
-			{
 				li_ants_crawling(paths[i], ++ant);
-			}
 			else
 				li_ants_crawling(paths[i], 0);
 			i++;
 		}
+		sleep(1);
 	}
 }
