@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 11:38:20 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 11:08:57 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 13:52:56 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int			li_create_path(t_graph *data, t_path **path)
 	t_room		*tmp_nxt;
 	int			ret;
 
-	*path = li_new_path("", 1);
+	*path = li_new_path("", 0);
 	tmp = data->start;
 	while ((ret = li_find_min_weight(data, tmp, &tmp_nxt)))
 	{

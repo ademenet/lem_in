@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 11:14:04 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 14:44:08 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ void				li_display_initial_list(t_graph *data, t_room *start)
 
 void truc(t_path *path) {
 	t_path *f = path;
+	printf("=============\n");
 	while (f)
 	{
 		printf("name: %8s | ant_id: %2d\n", f->name, f->ant_id);
 		f = f->next;
 	}
+	printf("=============\n");
 }
 
 void				li_display_path(t_path **path)
@@ -63,12 +65,11 @@ void				li_display_path(t_path **path)
 		f = path[i];
 		while (f)
 		{
-			printf("%s\n", f->name);
 			printf("name: %8s | ant_id: %2d\n", f->name, f->ant_id);
 			f = f->next;
 		}
 		i++;
-		sleep(1);
+		// sleep(1);
 	}
 }
 
@@ -97,7 +98,8 @@ int					main(void)
 		li_one_tube(&data);
 	else
 		paths = li_find_paths(&data);
-	li_display_path(paths);
+	// li_display_path(paths);
+	li_determine(&data, paths);
 	// li_display(paths, data.ant);
 	// li_clean_everything(&data, shpath);
 	// while (1);
