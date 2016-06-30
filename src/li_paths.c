@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 11:38:20 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 10:47:17 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 11:08:57 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_path		**li_add_path_to_paths(t_path **paths, t_path *path)
 {
-	DBfct
 	int			i;
 	t_path		**new_paths;
 
@@ -36,10 +35,8 @@ t_path		**li_add_path_to_paths(t_path **paths, t_path *path)
 		while (paths[++i] != NULL)
 			new_paths[i] = paths[i];
 		new_paths[i] = path;
-		truc(path);// stocke ienb
 		free(paths);
 	}
-	DBfctf
 	return (new_paths);
 }
 
@@ -53,7 +50,6 @@ t_path		**li_add_path_to_paths(t_path **paths, t_path *path)
 
 int			li_create_path(t_graph *data, t_path **path)
 {
-	DBfct
 	t_room		*tmp;
 	t_room		*tmp_nxt;
 	int			ret;
@@ -72,7 +68,8 @@ int			li_create_path(t_graph *data, t_path **path)
 		if (tmp != data->end)
 			tmp->weight = INT_MAX;
 	}
-	DBfctf
+	if (ret == 0 && path)
+		li_build_path(path, data->end->name);
 	return (ret);
 }
 
@@ -108,7 +105,6 @@ int			li_find_min_weight(t_graph *data, t_room *room, t_room **nxt)
 
 t_path		**li_find_paths(t_graph *data)
 {
-	DBfct
 	t_path		**paths;
 	t_path		*path;
 	t_room		*room;
@@ -122,6 +118,5 @@ t_path		**li_find_paths(t_graph *data)
 		if (li_create_path(data, &path) == 0)
 			paths = li_add_path_to_paths(paths, path);
 	}
-	DBfctf
 	return (paths);
 }

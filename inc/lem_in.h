@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 10:54:06 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 11:24:22 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ enum					e_err
 void					li_display_lap(t_path *path, t_path *end, int ants);
 void					li_ants_crawling(t_path *cur);
 void					li_display(t_path *path, int ants);
+int						li_path_len(t_path *path);
 
 /*
 ** WEIGHT

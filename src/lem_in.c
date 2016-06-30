@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 10:48:21 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 11:14:04 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,14 @@ void				li_display_path(t_path **path)
 	int				i;
 
 	i = 0;
-	if (path[i])
-		DB("BUT where ???")
 	f = path[i];
-	DB("BUT where 2 ???")
 	while (path[i] != NULL)
 	{
 		printf("------------\nChemin %d\n------------\n", i);
 		f = path[i];
 		while (f)
 		{
+			printf("%s\n", f->name);
 			printf("name: %8s | ant_id: %2d\n", f->name, f->ant_id);
 			f = f->next;
 		}

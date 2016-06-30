@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 19:20:02 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 13:04:22 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 11:47:36 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,22 @@ void				li_display(t_path *path, int ants)
 		li_display_lap(path, end, ants);
 		path->ant_id += 1;
 		cur = end;
+	}
+}
+
+
+void				li_determine(t_graph *data, t_path **path)
+{
+	int				i;
+	int				diff;
+
+	i = 0;
+	diff = data->ant - li_path_len(path[i]);
+	if (diff > 0)
+	{
+		if (path[i + 1])
+		{
+			
+		}
 	}
 }
