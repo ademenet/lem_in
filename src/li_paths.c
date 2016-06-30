@@ -6,11 +6,23 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 11:38:20 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 13:52:56 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 17:43:05 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
+
+void		li_mem_zero(t_path **paths, int len)
+{
+	int		i;
+
+	i = 0;
+	while (i < len)
+	{
+		paths[i] = NULL;
+		i++;
+	}
+}
 
 t_path		**li_add_path_to_paths(t_path **paths, t_path *path)
 {
@@ -29,13 +41,12 @@ t_path		**li_add_path_to_paths(t_path **paths, t_path *path)
 	{
 		while (paths[++i] != NULL)
 			;
-		new_paths = (t_path**)malloc(sizeof(t_path*) * i + 2);
-		new_paths[i + 1] = NULL;
+		new_paths = (t_path**)malloc(sizeof(t_path*) * (i + 2));
+		li_mem_zero(new_paths, i + 2);
 		i = -1;
 		while (paths[++i] != NULL)
 			new_paths[i] = paths[i];
 		new_paths[i] = path;
-		free(paths);
 	}
 	return (new_paths);
 }
@@ -106,6 +117,7 @@ int			li_find_min_weight(t_graph *data, t_room *room, t_room **nxt)
 t_path		**li_find_paths(t_graph *data)
 {
 	t_path		**paths;
+	t_path		**old_paths;
 	t_path		*path;
 	t_room		*room;
 	int			ret;
@@ -116,7 +128,11 @@ t_path		**li_find_paths(t_graph *data)
 	while (li_find_min_weight(data, data->start, &room) > -1)
 	{
 		if (li_create_path(data, &path) == 0)
-			paths = li_add_path_to_paths(paths, path);
+		{
+			old_paths = paths;
+			paths = li_add_path_to_paths(old_paths, path);
+			free(old_paths);
+		}
 	}
 	return (paths);
 }

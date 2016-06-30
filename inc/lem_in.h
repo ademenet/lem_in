@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 15:00:42 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 19:18:17 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,11 @@ enum					e_err
 */
 
 // void					li_display_lap(t_path *path, t_path *end, int ants);
+// int						li_still_ants_crawling(t_path *path);
+int						li_path_len(t_path *path);
+t_path					*li_reach_the_end(t_path *path);
 void					li_ants_crawling(t_path *path, int ant);
 int						li_display(t_path **paths);
-int						li_path_len(t_path *path);
 void					li_determine(t_graph *data, t_path **paths);
 
 /*
@@ -100,7 +102,7 @@ void					li_check_for_lonely_room(t_graph *data);
 void					li_kill_those_separatists(t_graph *data);
 int						li_bfs(t_graph *data);
 int						li_weight_child(t_graph *data);
-void					li_weight_child2(t_graph *data, int *i);
+void					li_weight_child2(t_graph *data);
 
 /*
 ** PATH
@@ -158,7 +160,8 @@ int						li_room_start_end(t_graph *data, int *com);
 ** ERROR
 */
 
-int						li_check_valid(t_graph *data);
+void					li_check_valid(t_graph *data);
+void					li_check_linked(t_graph *data);
 void					li_error(void);
 void					li_errormsg(char *msg);
 
@@ -167,8 +170,8 @@ void					li_errormsg(char *msg);
 */
 
 void					li_clean_one_elem(t_room *to_del);
-void					li_clean_everything(t_graph *data, t_path *path);
-
+void					li_clean_everything(t_graph *data, t_path **paths);
+void					li_clean_paths(t_path **paths);
 
 // DEBUG A EFFACER
 void					li_display_debug(t_graph *data, t_room *start);

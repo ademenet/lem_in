@@ -6,11 +6,23 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 13:40:25 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/27 16:53:32 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 19:13:43 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
+
+void				li_tube_mem_zero(t_room **tube, int len)
+{
+	int		i;
+
+	i = 0;
+	while (i < len)
+	{
+		tube[i] = NULL;
+		i++;
+	}
+}
 
 /*
 ** If we allready had some rooms in our tube array, copy it and add the new
@@ -28,11 +40,10 @@ t_room				**li_tube_copy(t_room **tube, t_room *to_link)
 	while (tube[++len] != NULL)
 		;
 	new_tube = (t_room**)malloc(sizeof(t_room*) * (len + 2));
+	li_tube_mem_zero(new_tube, len + 2);
 	while (tube[++i] != NULL)
 		new_tube[i] = tube[i];
-	new_tube[len] = to_link;
-	new_tube[len + 1] = NULL;
-	free(tube);
+	new_tube[i] = to_link;
 	return (new_tube);
 }
 
@@ -42,6 +53,8 @@ t_room				**li_tube_copy(t_room **tube, t_room *to_link)
 
 void				li_tube_dig(t_room *room1, t_room *room2)
 {
+	t_room			**tube;
+
 	if (room1->tube == NULL)
 	{
 		room1->tube = (t_room**)malloc(sizeof(t_room*) * 2);
@@ -49,7 +62,11 @@ void				li_tube_dig(t_room *room1, t_room *room2)
 		room1->tube[1] = NULL;
 	}
 	else if (room1->tube != NULL)
-		room1->tube = li_tube_copy(room1->tube, room2);
+	{
+		tube = room1->tube;
+		room1->tube = li_tube_copy(tube, room2);
+		free(tube);
+	}
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 14:05:42 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 13:42:09 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 19:07:28 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void				li_check_for_lonely_room(t_graph *data)
 
 void				li_kill_those_separatists(t_graph *data)
 {
+DBfct
 	t_room			*cur;
 	t_room			*to_del;
 
@@ -65,10 +66,23 @@ void				li_kill_those_separatists(t_graph *data)
 		cur = cur->next;
 		li_clean_one_elem(to_del);
 	}
+	DBfctf
+}
+
+int					li_weight_child(t_graph *data)
+{
+	if (data->head != NULL)
+	{
+		DB("BOUM ?")
+		li_weight_child2(data);
+		return (1);
+	}
+	return (-1);
 }
 
 int					li_bfs(t_graph *data)
 {
+	DBfct
 	data->end->weight = 0;
 	if (data->head != data->end)
 	{
@@ -89,19 +103,6 @@ int					li_bfs(t_graph *data)
 		if (data->head != NULL)
 			data->head = data->head->prev;
 	}
+	DBfctf
 	return (1);
-}
-
-int					li_weight_child(t_graph *data)
-{
-	int				i;
-
-	i = -1;
-	if (data->head != NULL)
-	{
-		while (data->head->tube[++i] != NULL)
-			li_weight_child2(data, &i);
-		return (1);
-	}
-	return (-1);
 }

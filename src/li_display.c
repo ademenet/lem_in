@@ -6,38 +6,28 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 19:20:02 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 15:59:16 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/06/30 17:21:07 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-// void				li_display_lap(t_path *path, t_path *end, int ants)
-// {
-// 	t_path			*cur;
-//
-// 	cur = end;
-// 	while (cur != path)
-// 	{
-// 		if (cur->ant_id > 0 && cur->ant_id <= ants)
-// 		{
-// 			ft_printf("L%d-%s", cur->ant_id, cur->name);
-// 			if (cur->prev != path)
-// 				ft_printf(" ");
-// 		}
-// 		cur = cur->prev;
-// 	}
-// 	ft_printf("\n");
-// }
+t_path				*li_reach_the_end(t_path *path)
+{
+	t_path			*end;
+
+	end = path;
+	while (end->next != NULL)
+		end = end->next;
+	return (end);
+}
 
 void				li_ants_crawling(t_path *path, int ant)
 {
 	t_path			*cur;
 
-	cur = path;
+	cur = li_reach_the_end(path);
 	path->ant_id = ant;
-	while (cur->next != NULL)
-		cur = cur->next;
 	while (cur)
 	{
 		if (cur->prev != NULL)
@@ -47,25 +37,6 @@ void				li_ants_crawling(t_path *path, int ant)
 	path->ant_id = 0;
 }
 
-// void				li_display(t_path *path, int ants)
-// {
-// 	t_path			*end;
-// 	t_path			*cur;
-//
-// 	end = path;
-// 	while (end->next != NULL)
-// 		end = end->next;
-// 	cur = end;
-// 	path->ant_id = 1;
-// 	while (end->ant_id != ants)
-// 	{
-// 		li_ants_crawling(cur);
-// 		li_display_lap(path, end, ants);
-// 		path->ant_id += 1;
-// 		cur = end;
-// 	}
-// }
-
 int					li_display(t_path **paths)
 {
 	t_path			*end;
@@ -73,25 +44,27 @@ int					li_display(t_path **paths)
 	int				ret;
 
 	i = 0;
+	ret = 0;
 	while (paths[i] != NULL)
 	{
-		end = paths[i];
-		while (end->next != NULL)
-			end = end->next;
+		end = li_reach_the_end(paths[i]);
 		while (end->prev != NULL)
 		{
 			if (end->ant_id > 0)
 			{
-				ret = ft_printf("L%d-%s", end->ant_id, end->name);
-				if (end->prev != paths[i])
-					ft_printf(" ");
+				ret++;
+				ft_printf("L%d-%s ", end->ant_id, end->name);
+				// if (end->prev)
+				// 	ft_printf(" ");
 			}
 			end = end->prev;
 		}
 		i++;
+		// if (ret)
+		// 	ft_printf(" ");
 	}
-	ft_printf("\n");
-	printf("%d\n", ret);
+	if (ret)
+		ft_printf("\n");
 	return (ret);
 }
 
@@ -99,26 +72,23 @@ void				li_determine(t_graph *data, t_path **paths)
 {
 	int				i;
 	int				ant;
+	int				ret;
 
 	ant = 0;
-	while (li_display(paths) > 1)
+	ret = 1;
+	while (ret)
 	{
-		if (ant < data->ant)
-		{
-			ant++;
-			li_ants_crawling(paths[0], ant);
-		}
-		else
+		ant++ < data->ant ? li_ants_crawling(paths[0], ant) :
 			li_ants_crawling(paths[0], 0);
 		i = 1;
 		while (paths[i] != NULL)
 		{
-			if (li_path_len(paths[i]) - li_path_len(paths[0]) < data->ant - (ant + 1))
-				li_ants_crawling(paths[i], ++ant);
-			else
+			(li_path_len(paths[i]) - li_path_len(paths[0])) <
+				(data->ant - (ant + 1)) ?
+				li_ants_crawling(paths[i], ++ant) :
 				li_ants_crawling(paths[i], 0);
 			i++;
 		}
-		sleep(1);
+		ret = li_display(paths);
 	}
 }
