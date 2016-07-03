@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 19:28:33 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/03 16:14:41 by alain            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,26 +107,20 @@ int					main(void)
 
 	paths = NULL;
 	li_new_graph(&data);
-	DB("1")
 	data = li_parsing(&data);
-	DB("2")
 	li_check_valid(&data);
-	DB("3")
 	li_check_for_lonely_room(&data);
-	DB("4")
 	li_bfs(&data);
-	DB("5")
 	li_check_linked(&data);
-	DB("6")
 	if (data.start->weight == 1)
 		li_one_tube(&data);
 	else
+	{
 		paths = li_find_paths(&data);
-	// li_display_path(paths);
-	DB("2")
-	li_determine(&data, paths);
-	// li_display(paths, data.ant);
+		li_determine(&data, paths);
+	}
+	DB("segfault avant ?")
 	li_clean_everything(&data, paths);
-	// while (1);
+	while (1);
 	return (0);
 }

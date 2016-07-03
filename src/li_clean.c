@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 16:37:37 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 19:18:19 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/03 16:17:53 by alain            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void				li_clean_everything(t_graph *data, t_path **paths)
 	t_room			*to_del;
 
 	del = data->queue;
+	DB("segfault2")
 	while (del)
 	{
 		to_del = del;
@@ -26,6 +27,7 @@ void				li_clean_everything(t_graph *data, t_path **paths)
 		free(to_del->tube);
 		free(to_del);
 	}
+	DB("segfault1")
 	li_clean_paths(paths);
 }
 
@@ -36,17 +38,28 @@ void				li_clean_paths(t_path **paths)
 	int				i;
 
 	i = 0;
-	while (paths[i] != NULL)
+	DB("segfault3")
+	if (paths[i] != NULL)
 	{
-		delpath = paths[i];
-		while (delpath)
+		DB("ok..")
+		while (paths[i] != NULL)
 		{
-			to_delpath = delpath;
-			delpath = delpath->next;
-			free(to_delpath);
+			DB("1")
+			delpath = paths[i];
+			DB("2")
+			while (delpath)
+			{
+				DB("3")
+				to_delpath = delpath;
+				DB("4")
+				delpath = delpath->next;
+				DB("5")
+				free(to_delpath);
+			}
+			i++;
 		}
-		i++;
 	}
+	DB("segfault4")
 	free(paths);
 }
 

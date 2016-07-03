@@ -6,7 +6,7 @@
 #    By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/30 16:59:27 by ademenet          #+#    #+#              #
-#    Updated: 2016/06/30 18:59:17 by ademenet         ###   ########.fr        #
+#    Updated: 2016/07/01 14:32:23 by alain            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,9 +51,6 @@ $(NAME): $(OBJ)
 	@make -C libft
 	@$(CC) $(FLAGS) -o $@ $^ libft/libft.a libft/ft_printf/libftprintf.a
 	@echo "\033[1;34mLem-in\t\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
-	@printf "\033[44;1m%-80s" "LEM-IN"
-	@printf "%80s" "Bonus:"
-	@printf "%80s" "by ademenet"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true

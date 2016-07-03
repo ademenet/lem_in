@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 11:22:41 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/29 13:14:30 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/03 16:09:27 by alain            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int					li_room_start_end(t_graph *data, int *com)
 
 int					li_room_add(t_graph *data, char *name, int *com)
 {
+	DBfct
 	t_room			*new;
 
 	if (data->head == NULL)

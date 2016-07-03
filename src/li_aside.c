@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:40:15 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 19:30:27 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/03 16:13:12 by alain            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ void				li_weight_child2(t_graph *data)
 	int				i;
 
 	i = -1;
-	printf("data->head->name == %s\n", data->head->name);
 	while (data->head->tube[++i] != NULL)
 	{
-		printf("(%d)\n", i);
 		if (data->head->tube[i]->weight == -1)
 		{
 			data->head->tube[i]->weight = data->head->weight + 1;
@@ -55,7 +53,7 @@ void				li_one_tube(t_graph *data)
 		ant++;
 	}
 	ft_printf("\n");
-	exit(1);
+	// exit(1);
 }
 
 int					li_path_len(t_path *path)
