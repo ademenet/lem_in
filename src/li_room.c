@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 11:22:41 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 16:44:28 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/04 16:57:51 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,13 @@ int					li_room_check_coord(char *line)
 	return (1);
 }
 
+void				li_clean_split_line(char *first, char *second, char **tab)
+{
+	free(first);
+	free(second);
+	free(tab);
+}
+
 /*
 ** The rooms are defined as it: name coord_x coord_y.
 */
@@ -104,8 +111,8 @@ int					li_room_get(char *line, t_graph *data, int *com)
 	len = li_array_len((void**)split_line);
 	if (len == 1)
 	{
-		free (split_line[0]);
-		free (split_line);
+		free(split_line[0]);
+		free(split_line);
 		return (li_tube_get(line, data));
 	}
 	if (len != 3)
@@ -119,8 +126,6 @@ int					li_room_get(char *line, t_graph *data, int *com)
 	if (li_room_check_coord(split_line[1]) == -1 ||
 		li_room_check_coord(split_line[2]) == -1)
 		return (-1);
-	free(split_line[1]);
-	free(split_line[2]);
-	free(split_line);
+	li_clean_split_line(split_line[1], split_line[2], split_line);
 	return (li_room_add(data, split_line[0], com));
 }

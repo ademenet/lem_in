@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 16:39:13 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/04 16:56:58 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ int						li_room_get(char *line, t_graph *data, int *com);
 int						li_room_check_coord(char *line);
 int 					li_room_add(t_graph *data, char *name, int *com);
 int						li_room_start_end(t_graph *data, int *com);
+void					li_clean_split_line(char *first, char* second,
+						char **tab);
 int						li_array_len(void **tab);
 
 /*
