@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 16:27:41 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/04 17:59:07 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,34 @@ void				li_display_path(t_path **path)
 	}
 }
 
+void				li_bonuses(int argc, char **argv, t_graph *data)
+{
+	int				i;
+	int				j;
+
+	if (argc > 1)
+	{
+		i = argc - 1;
+		while (i > 0)
+		{
+			j = -1;
+			if (argv[i][0] == '-')
+			{
+				while (argv[i][++j] != '\0')
+				{
+					if (argv[i][j] == 'v')
+						data->bonus[0] = 1;
+					else if (argv[i][j] == 'c')
+						data->bonus[1] = 1;
+				}
+			}
+			else
+				ft_printf("Wrong arguments for bonuses, use: -v or -c.\n");
+			i--;
+		}
+	}
+}
+
 /*
 ** Check if start or end are linked to the rest of our graph.
 */
@@ -40,7 +68,7 @@ void				li_check_valid(t_graph *data)
 {
 	if (data->start == NULL || data->end == NULL ||
 		data->start->tube == NULL || data->end->tube == NULL)
-		li_error();
+		li_error(data, -10);
 }
 
 /*
@@ -63,16 +91,17 @@ void				li_check_linked(t_graph *data)
 		cur = cur->next;
 	}
 	if (ret != 2)
-		li_error();
+		li_error(data, -10);
 }
 
-int					main(void)
+int					main(int argc, char **argv)
 {
 	t_graph			data;
 	t_path			**paths;
 
 	paths = NULL;
 	li_new_graph(&data);
+	li_bonuses(argc, argv, &data);
 	data = li_parsing(&data);
 	li_check_valid(&data);
 	li_check_for_lonely_room(&data);

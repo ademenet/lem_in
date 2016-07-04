@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 11:22:41 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 16:57:51 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/04 17:35:37 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int					li_room_start_end(t_graph *data, int *com)
 	else if (*com == 2 && data->end == NULL)
 		data->end = data->head;
 	else if (*com == 1 && data->start != NULL)
-		return (-1);
+		return (-7);
 	else if (*com == 2 && data->start != NULL)
-		return (-1);
+		return (-7);
 	if (*com != 0)
 		*com = 0;
 	return (1);
@@ -116,16 +116,16 @@ int					li_room_get(char *line, t_graph *data, int *com)
 		return (li_tube_get(line, data));
 	}
 	if (len != 3)
-		return (-1);
+		return (-4);
 	len = -1;
 	while (split_line[0][++len] != '\0')
 	{
 		if (split_line[0][len] == '-' || split_line[0][0] == 'L')
-			return (-1);
+			return (-5);
 	}
 	if (li_room_check_coord(split_line[1]) == -1 ||
 		li_room_check_coord(split_line[2]) == -1)
-		return (-1);
+		return (-6);
 	li_clean_split_line(split_line[1], split_line[2], split_line);
 	return (li_room_add(data, split_line[0], com));
 }
