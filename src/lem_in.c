@@ -6,51 +6,11 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 14:53:47 by alain            ###   ########.fr       */
+/*   Updated: 2016/07/04 16:27:41 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
-
-void				li_display_debug(t_graph *data, t_room *start)
-{
-	// DBfct
-	t_room 			*tmp;
-
-	tmp = start;
-	while (tmp)
-	{
-		printf("name: %10s, weight: %5d\n", tmp->name, tmp->weight);
-		// sleep(1);
-		tmp = tmp->next;
-	}
-}
-
-void				li_display_initial_list(t_graph *data, t_room *start)
-{
-	t_room 			*tmp;
-
-	tmp = start;
-	while (tmp)
-	{
-		printf("[%5s]", tmp->name);
-		if (tmp->next != NULL)
-			printf(">");
-		tmp = tmp->next;
-	}
-	printf("\n");
-}
-
-void truc(t_path *path) {
-	t_path *f = path;
-	printf("=============\n");
-	while (f)
-	{
-		printf("name: %8s | ant_id: %2d\n", f->name, f->ant_id);
-		f = f->next;
-	}
-	printf("=============\n");
-}
 
 void				li_display_path(t_path **path)
 {
@@ -61,17 +21,20 @@ void				li_display_path(t_path **path)
 	f = path[i];
 	while (path[i] != NULL)
 	{
-		printf("------------\nChemin %d\n------------\n", i);
+		ft_printf("------------\nChemin %d\n------------\n", i);
 		f = path[i];
 		while (f)
 		{
-			printf("name: %8s | ant_id: %2d\n", f->name, f->ant_id);
+			ft_printf("name: %8s | ant_id: %2d\n", f->name, f->ant_id);
 			f = f->next;
 		}
 		i++;
-		// sleep(1);
 	}
 }
+
+/*
+** Check if start or end are linked to the rest of our graph.
+*/
 
 void				li_check_valid(t_graph *data)
 {
@@ -79,6 +42,10 @@ void				li_check_valid(t_graph *data)
 		data->start->tube == NULL || data->end->tube == NULL)
 		li_error();
 }
+
+/*
+** Check if start room is linked in a way or another to end room.
+*/
 
 void				li_check_linked(t_graph *data)
 {
@@ -99,7 +66,6 @@ void				li_check_linked(t_graph *data)
 		li_error();
 }
 
-// Yaura un malloc pour data
 int					main(void)
 {
 	t_graph			data;
@@ -124,6 +90,5 @@ int					main(void)
 		li_clean_data(&data);
 		li_clean_paths(paths);
 	}
-	while (1);
 	return (0);
 }

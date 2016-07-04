@@ -6,11 +6,15 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 13:40:25 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/03 14:30:16 by alain            ###   ########.fr       */
+/*   Updated: 2016/07/04 16:22:51 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
+
+/*
+** Initialize tube array with all NULL pointers.
+*/
 
 void				li_tube_mem_zero(t_room **tube, int len)
 {

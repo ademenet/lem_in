@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 14:05:42 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/03 16:10:34 by alain            ###   ########.fr       */
+/*   Updated: 2016/07/04 16:26:00 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ static void			li_check_for_lonely_room2(t_room *cur)
 	else
 		cur->prev->next = NULL;
 }
+
+/*
+** Check for rooms that are not connected with the others then delete them
+** with li_clean_one_elem.
+*/
 
 void				li_check_for_lonely_room(t_graph *data)
 {
@@ -50,6 +55,11 @@ void				li_check_for_lonely_room(t_graph *data)
 	}
 }
 
+/*
+** Sometimes, several rooms are not part of the graph (including start room),
+** so we clean them.
+*/
+
 void				li_kill_those_separatists(t_graph *data)
 {
 	t_room			*cur;
@@ -67,6 +77,10 @@ void				li_kill_those_separatists(t_graph *data)
 	}
 }
 
+/*
+** First part of weight assigning function to child rooms.
+*/
+
 int					li_weight_child(t_graph *data)
 {
 	if (data->head != NULL)
@@ -76,6 +90,10 @@ int					li_weight_child(t_graph *data)
 	}
 	return (-1);
 }
+
+/*
+** The main function for our breadth first search.
+*/
 
 int					li_bfs(t_graph *data)
 {

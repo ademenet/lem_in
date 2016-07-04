@@ -6,11 +6,15 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 11:38:20 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 17:43:05 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/04 16:28:18 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
+
+/*
+** Initialize paths array with NULL pointers.
+*/
 
 void		li_mem_zero(t_path **paths, int len)
 {
@@ -24,6 +28,10 @@ void		li_mem_zero(t_path **paths, int len)
 	}
 }
 
+/*
+** Add our new path to our paths array.
+*/
+
 t_path		**li_add_path_to_paths(t_path **paths, t_path *path)
 {
 	int			i;
@@ -32,7 +40,6 @@ t_path		**li_add_path_to_paths(t_path **paths, t_path *path)
 	i = -1;
 	if (paths == NULL)
 	{
-
 		new_paths = (t_path**)malloc(sizeof(t_path*) * 2);
 		new_paths[0] = path;
 		new_paths[1] = NULL;
@@ -50,9 +57,6 @@ t_path		**li_add_path_to_paths(t_path **paths, t_path *path)
 	}
 	return (new_paths);
 }
-
-
-// ATTENTION FREE *path si plus de chemins.
 
 /*
 ** Initiate new path by finding min weight until the end. If no solutions,

@@ -6,29 +6,26 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 16:37:37 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 14:13:09 by alain            ###   ########.fr       */
+/*   Updated: 2016/07/04 16:17:07 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void				li_clean_data(t_graph *data)
-{
-	t_room			*del;
-	t_room			*to_del;
+/*
+** Free the room name, the tubes and the element itself.
+*/
 
-	del = data->queue;
-	DB("segfault2")
-	while (del)
-	{
-		to_del = del;
-		del = del->next;
-		free(to_del->name);
-		free(to_del->tube);
-		free(to_del);
-	}
-	DB("segfault1")
+void				li_clean_one_elem(t_room *to_del)
+{
+	free(to_del->name);
+	free(to_del->tube);
+	free(to_del);
 }
+
+/*
+** Clean the differents paths we used.
+*/
 
 void				li_clean_paths(t_path **paths)
 {
@@ -37,30 +34,34 @@ void				li_clean_paths(t_path **paths)
 	int				i;
 
 	i = 0;
-	DB("segfault3")
 	while (paths[i] != NULL)
 	{
-		DB("1")
 		delpath = paths[i];
-		DB("2")
 		while (delpath)
 		{
-			DB("3")
 			to_delpath = delpath;
-			DB("4")
 			delpath = delpath->next;
-			DB("5")
 			free(to_delpath);
 		}
 		i++;
 	}
-	DB("segfault4")
 	free(paths);
 }
 
-void				li_clean_one_elem(t_room *to_del)
+/*
+** Clean everything data points to.
+*/
+
+void				li_clean_data(t_graph *data)
 {
-	free(to_del->name);
-	free(to_del->tube);
-	free(to_del);
+	t_room			*del;
+	t_room			*to_del;
+
+	del = data->queue;
+	while (del)
+	{
+		to_del = del;
+		del = del->next;
+		li_clean_one_elem(to_del);
+	}
 }

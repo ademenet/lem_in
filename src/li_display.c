@@ -6,11 +6,15 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 19:20:02 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 17:21:07 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/04 16:20:20 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
+
+/*
+** Returns the pointer to the end of the list.
+*/
 
 t_path				*li_reach_the_end(t_path *path)
 {
@@ -21,6 +25,10 @@ t_path				*li_reach_the_end(t_path *path)
 		end = end->next;
 	return (end);
 }
+
+/*
+** Make ant_id steps room by room, so this is how our ants are crawling.
+*/
 
 void				li_ants_crawling(t_path *path, int ant)
 {
@@ -36,6 +44,10 @@ void				li_ants_crawling(t_path *path, int ant)
 	}
 	path->ant_id = 0;
 }
+
+/*
+** Display the final result.
+*/
 
 int					li_display(t_path **paths)
 {
@@ -54,19 +66,20 @@ int					li_display(t_path **paths)
 			{
 				ret++;
 				ft_printf("L%d-%s ", end->ant_id, end->name);
-				// if (end->prev)
-				// 	ft_printf(" ");
 			}
 			end = end->prev;
 		}
 		i++;
-		// if (ret)
-		// 	ft_printf(" ");
 	}
 	if (ret)
 		ft_printf("\n");
 	return (ret);
 }
+
+/*
+** If we have several paths, it determines if it is useful to send ants in
+** each paths or not.
+*/
 
 void				li_determine(t_graph *data, t_path **paths)
 {

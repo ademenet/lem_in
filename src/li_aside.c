@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:40:15 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/03 16:13:12 by alain            ###   ########.fr       */
+/*   Updated: 2016/07/04 16:38:43 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void				li_one_tube(t_graph *data)
 		ant++;
 	}
 	ft_printf("\n");
-	// exit(1);
 }
 
 int					li_path_len(t_path *path)
@@ -67,4 +66,14 @@ int					li_path_len(t_path *path)
 		path = path->next;
 	}
 	return (0);
+}
+
+int					li_array_len(void **tab)
+{
+	int				len;
+
+	len = -1;
+	while (tab[++len] != NULL)
+		;
+	return (len);
 }

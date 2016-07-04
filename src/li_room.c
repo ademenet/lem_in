@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 11:22:41 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 14:53:03 by alain            ###   ########.fr       */
+/*   Updated: 2016/07/04 16:44:28 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int					li_room_start_end(t_graph *data, int *com)
 
 int					li_room_add(t_graph *data, char *name, int *com)
 {
-	DBfct
 	t_room			*new;
 
 	if (data->head == NULL)
@@ -102,12 +101,10 @@ int					li_room_get(char *line, t_graph *data, int *com)
 	int				len;
 
 	split_line = ft_strsplit(line, ' ');
-	len = -1;
-	while (split_line[++len])
-		;
+	len = li_array_len((void**)split_line);
 	if (len == 1)
 	{
-		free(split_line[0]);
+		free (split_line[0]);
 		free (split_line);
 		return (li_tube_get(line, data));
 	}
@@ -119,7 +116,7 @@ int					li_room_get(char *line, t_graph *data, int *com)
 		if (split_line[0][len] == '-' || split_line[0][0] == 'L')
 			return (-1);
 	}
-	if (li_room_check_coord(split_line[1]) == -1 &&
+	if (li_room_check_coord(split_line[1]) == -1 ||
 		li_room_check_coord(split_line[2]) == -1)
 		return (-1);
 	free(split_line[1]);
