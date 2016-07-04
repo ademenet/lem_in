@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:40:15 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 16:38:43 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/04 18:17:07 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ void				li_one_tube(t_graph *data)
 	ant = 1;
 	while (ant <= data->ant)
 	{
-		ft_printf("L%d-%s", ant, data->end->name);
-		if (ant < data->ant)
-			ft_printf(" ");
+		li_display2(data, ant, data->end->name);
 		ant++;
 	}
 	ft_printf("\n");

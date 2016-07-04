@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 17:41:31 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/04 18:11:32 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ enum					e_err
 int						li_path_len(t_path *path);
 t_path					*li_reach_the_end(t_path *path);
 void					li_ants_crawling(t_path *path, int ant);
-int						li_display(t_path **paths);
+void					li_display2(t_graph *data, int ant_id, char *name);
+int						li_display(t_graph *data, t_path **paths);
 void					li_determine(t_graph *data, t_path **paths);
 
 /*
