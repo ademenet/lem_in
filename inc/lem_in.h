@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 18:11:32 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/04 18:31:35 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@
 # include <limits.h>
 # include "../libft/libft.h"
 # include "../libft/ft_printf/include/fpf_printf.h"
-
-# include <unistd.h>
-# define DBfct fprintf(stderr, "%s\n", __FUNCTION__); // A EFFACER !
-# define DBfctf fprintf(stderr, "fin de %s\n", __FUNCTION__); // A EFFACER !
-# define DB(text) fprintf(stderr, "%s\n", text); // A EFFACER !
-# define DBint(text, integer) fprintf(stderr, "%s == [%d]\n", text, integer); // A EFFACER !
 
 typedef struct s_room	t_room;
 typedef struct s_graph	t_graph;
@@ -70,24 +64,10 @@ struct					s_graph
 	char				bonus[2];
 };
 
-
-/*
-** Enum for verbose error handler:
-*/
-
-enum					e_err
-{
-	ERROR_NB,
-	ERROR_ROOM,
-	ERROR_TUBE
-};
-
 /*
 ** DISPLAY
 */
 
-// void					li_display_lap(t_path *path, t_path *end, int ants);
-// int						li_still_ants_crawling(t_path *path);
 int						li_path_len(t_path *path);
 t_path					*li_reach_the_end(t_path *path);
 void					li_ants_crawling(t_path *path, int ant);
@@ -154,9 +134,9 @@ t_room					**li_tube_copy(t_room **tube, t_room *to_link);
 
 int						li_room_get(char *line, t_graph *data, int *com);
 int						li_room_check_coord(char *line);
-int 					li_room_add(t_graph *data, char *name, int *com);
+int						li_room_add(t_graph *data, char *name, int *com);
 int						li_room_start_end(t_graph *data, int *com);
-void					li_clean_split_line(char *first, char* second,
+void					li_clean_split_line(char *first, char *second,
 						char **tab);
 int						li_array_len(void **tab);
 
@@ -181,12 +161,5 @@ void					li_clean_paths(t_path **paths);
 */
 
 void					li_bonuses(int argc, char **argv, t_graph *data);
-
-
-// DEBUG A EFFACER
-void					li_display_debug(t_graph *data, t_room *start);
-void					li_display_initial_list(t_graph *data, t_room *start);
-void					li_display_path(t_path **path);
-void 					truc(t_path *path);
 
 #endif
