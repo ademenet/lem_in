@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 11:22:41 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/03 16:09:27 by alain            ###   ########.fr       */
+/*   Updated: 2016/07/04 14:53:03 by alain            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,11 @@ int					li_room_get(char *line, t_graph *data, int *com)
 	while (split_line[++len])
 		;
 	if (len == 1)
+	{
+		free(split_line[0]);
+		free (split_line);
 		return (li_tube_get(line, data));
+	}
 	if (len != 3)
 		return (-1);
 	len = -1;
