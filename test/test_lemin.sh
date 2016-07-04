@@ -6,7 +6,7 @@
 
 test_errors1()
 {
-	for i in {1..22}
+	for i in {1..24}
 	do
 		printf "\033[34;1m./lem-in < test/test_err%d.map\n\033[0m" $i
 		./lem-in < test/test_err$i.map
@@ -16,10 +16,30 @@ test_errors1()
 
 test_errors2()
 {
-	for i in {23..46}
+	for i in {25..48}
 	do
 		printf "\033[34;1m./lem-in < test/test_err%d.map\n\033[0m" $i
 		./lem-in < test/test_err$i.map
+		echo '-----'
+	done
+}
+
+test_errors1b()
+{
+	for i in {1..24}
+	do
+		printf "\033[34;1m./lem-in < test/test_err%d.map\n\033[0m" $i
+		./lem-in -v < test/test_err$i.map
+		echo '-----'
+	done
+}
+
+test_errors2b()
+{
+	for i in {25..48}
+	do
+		printf "\033[34;1m./lem-in < test/test_err%d.map\n\033[0m" $i
+		./lem-in -v < test/test_err$i.map
 		echo '-----'
 	done
 }
@@ -66,8 +86,10 @@ while true; do
 	echo "\033[34;1mChoose a test:\n
 		[1]\tValids from 1 to 15\n
 		[2]\tValids from 16 to 30\n
-		[3]\tErrors from 1 to 22\n
-		[4]\tErrors from 23 to 46\n
+		[3]\tErrors from 1 to 24\n
+		[4]\tErrors from 25 to 48\n
+		[3b]\tErrors from 1 to 24 with verbose mode (bonus)\n
+		[4b]\tErrors from 25 to 48 with verbose mode (bonus)\n
 		[5-i]\tBig with i from 1 to 5\n
 		[q]\tQuit\n
 		\033[0m"
@@ -77,6 +99,8 @@ while true; do
 		"2" )		test_valid2 ;;
 		"3" )		test_errors1 ;;
 		"4" )		test_errors2 ;;
+		"3b" )		test_errors1b ;;
+		"4b" )		test_errors2b ;;
 		"5-1" )		./lem-in < test/test_big1.map ;;
 		"5-2" )		./lem-in < test/test_big2.map ;;
 		"5-3" )		./lem-in < test/test_big3.map ;;
