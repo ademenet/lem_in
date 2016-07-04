@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/03 16:14:41 by alain            ###   ########.fr       */
+/*   Updated: 2016/07/04 14:18:22 by alain            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,17 @@ int					main(void)
 	li_bfs(&data);
 	li_check_linked(&data);
 	if (data.start->weight == 1)
+	{
 		li_one_tube(&data);
+		li_clean_data(&data);
+	}
 	else
 	{
 		paths = li_find_paths(&data);
 		li_determine(&data, paths);
+		li_clean_data(&data);
+		li_clean_paths(paths);
 	}
-	DB("segfault avant ?")
-	li_clean_everything(&data, paths);
-	while (1);
+	// while (1);
 	return (0);
 }

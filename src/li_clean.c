@@ -6,13 +6,13 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 16:37:37 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/03 16:17:53 by alain            ###   ########.fr       */
+/*   Updated: 2016/07/04 14:13:09 by alain            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void				li_clean_everything(t_graph *data, t_path **paths)
+void				li_clean_data(t_graph *data)
 {
 	t_room			*del;
 	t_room			*to_del;
@@ -28,7 +28,6 @@ void				li_clean_everything(t_graph *data, t_path **paths)
 		free(to_del);
 	}
 	DB("segfault1")
-	li_clean_paths(paths);
 }
 
 void				li_clean_paths(t_path **paths)
@@ -39,25 +38,21 @@ void				li_clean_paths(t_path **paths)
 
 	i = 0;
 	DB("segfault3")
-	if (paths[i] != NULL)
+	while (paths[i] != NULL)
 	{
-		DB("ok..")
-		while (paths[i] != NULL)
+		DB("1")
+		delpath = paths[i];
+		DB("2")
+		while (delpath)
 		{
-			DB("1")
-			delpath = paths[i];
-			DB("2")
-			while (delpath)
-			{
-				DB("3")
-				to_delpath = delpath;
-				DB("4")
-				delpath = delpath->next;
-				DB("5")
-				free(to_delpath);
-			}
-			i++;
+			DB("3")
+			to_delpath = delpath;
+			DB("4")
+			delpath = delpath->next;
+			DB("5")
+			free(to_delpath);
 		}
+		i++;
 	}
 	DB("segfault4")
 	free(paths);

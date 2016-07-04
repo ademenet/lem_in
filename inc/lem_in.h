@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/06/30 19:18:17 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/04 14:15:16 by alain            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void					li_errormsg(char *msg);
 */
 
 void					li_clean_one_elem(t_room *to_del);
-void					li_clean_everything(t_graph *data, t_path **paths);
+void					li_clean_data(t_graph *data);
 void					li_clean_paths(t_path **paths);
 
 // DEBUG A EFFACER
