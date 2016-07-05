@@ -6,7 +6,7 @@
 #    By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/30 16:59:27 by ademenet          #+#    #+#              #
-#    Updated: 2016/07/01 14:32:23 by alain            ###   ########.fr        #
+#    Updated: 2016/07/05 11:01:59 by alain            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ clean:
 fclean: clean
 	@make fclean -C libft
 	@rm -rf $(NAME)
+	@rm -rf test
 	@echo "\033[1;34mLem-in\t\t\033[1;33mCleaning lib\t\033[0;32m[OK]\033[0m"
 
 re: fclean all
@@ -71,3 +72,7 @@ re: fclean all
 norme:
 	@norminette */*[hc]
 	@echo "\033[1;34mLem-in\t\033[1;33mNorme\t\033[0;32m[OK]\033[0m"
+
+correctme:
+	git clone https://github.com/moannuo/lem-in_test.git test
+	@echo "\033[1;34m> Run the test: sh test/test_lemin.sh\033[0m"
