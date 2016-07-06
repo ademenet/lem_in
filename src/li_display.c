@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 19:20:02 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 18:13:03 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/06 11:23:08 by alain            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void				li_display2(t_graph *data, int ant_id, char *name)
 {
 	if (data->bonus[1] == 1)
 	{
-		ft_printf("\033[38;5;%dmL%d-%s ", ant_id, ant_id, name);
+		ft_printf("\033[38;5;%dmL%d-%s \033[0m", ant_id, ant_id, name);
 	}
 	else
 		ft_printf("L%d-%s ", ant_id, name);
