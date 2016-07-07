@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 11:38:20 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 17:39:22 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/07 19:17:08 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,11 @@ t_path		**li_find_paths(t_graph *data)
 	int			ret;
 
 	if (!data->start)
-		li_error(data, -10);
+	{
+		if (data->err == 0)
+			data->err = -10;
+		li_error(data);
+	}
 	ret = 0;
 	while (li_find_min_weight(data, data->start, &room) > -1)
 	{

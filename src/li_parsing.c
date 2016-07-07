@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/06 11:20:59 by alain            ###   ########.fr       */
+/*   Updated: 2016/07/07 19:04:36 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,28 +73,24 @@ int					li_sharp_handler(char *line)
 
 t_graph				li_parsing(t_graph *data)
 {
-	int				err;
 	int				com;
 	char			*line;
 
-	err = 0;
 	com = 0;
 	while (get_next_line(0, &line) > 0)
 	{
 		ft_putendl(line);
 		if (line[0] == '#' && com == 0)
 			com = li_sharp_handler(line);
-		else if (err == 0)
-			err = li_ants_get(line, data);
-		else if (err == 1)
-			err = li_room_get(line, data, &com);
-		else if (err == 2)
-			err = li_tube_get(line, data);
+		else if (data->err == 0)
+			data->err = li_ants_get(line, data);
+		else if (data->err == 1)
+			data->err = li_room_get(line, data, &com);
+		else if (data->err == 2)
+			data->err = li_tube_get(line, data);
 		free(line);
 	}
 	free(line);
-	// if (err < 0)
-	// 	li_error(data, err);
 	ft_printf("\n");
 	return (*data);
 }

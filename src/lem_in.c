@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 17:59:07 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/07 19:19:22 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,11 @@ void				li_check_valid(t_graph *data)
 {
 	if (data->start == NULL || data->end == NULL ||
 		data->start->tube == NULL || data->end->tube == NULL)
-		li_error(data, -10);
+	{
+		if (data->err == 0)
+			data->err = -10;
+		li_error(data);
+	}
 }
 
 /*
@@ -91,7 +95,11 @@ void				li_check_linked(t_graph *data)
 		cur = cur->next;
 	}
 	if (ret != 2)
-		li_error(data, -10);
+	{
+		if (data->err == 0)
+			data->err = -10;
+		li_error(data);
+	}
 }
 
 int					main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/03 10:19:46 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 17:03:14 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/07 19:01:35 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ void				li_new_graph(t_graph *data)
 	data->end = NULL;
 	data->head = NULL;
 	data->queue = NULL;
+	data->err = 0;
 	ft_bzero(data->bonus, 2);
 }

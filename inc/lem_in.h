@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 18:31:35 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/07 19:13:29 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ struct					s_graph
 	struct s_room		*end;
 	struct s_room		*head;
 	struct s_room		*queue;
+	int					err;
 	char				bonus[2];
 };
 
@@ -146,7 +147,7 @@ int						li_array_len(void **tab);
 
 void					li_check_valid(t_graph *data);
 void					li_check_linked(t_graph *data);
-void					li_error(t_graph *data, int err);
+void					li_error(t_graph *data);
 
 /*
 ** CLEAN
