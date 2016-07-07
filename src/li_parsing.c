@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/04 17:24:12 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/06 11:20:59 by alain            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int					li_ants_get(char *line, t_graph *data)
 
 	i = 0;
 	nb = 0;
-	if (line)
+	if (ft_strlen(line) != 0)
 	{
 		if (line[0] == '-')
 			return (-1);
@@ -43,9 +43,11 @@ int					li_ants_get(char *line, t_graph *data)
 		nb = ft_atoi(line);
 		if (nb > INT_MAX)
 			return (-3);
+		data->ant = (int)nb;
+		return (1);
 	}
-	data->ant = (int)nb;
-	return (1);
+	else
+		return (-1);
 }
 
 /*
@@ -91,8 +93,8 @@ t_graph				li_parsing(t_graph *data)
 		free(line);
 	}
 	free(line);
-	if (err < 0)
-		li_error(data, err);
+	// if (err < 0)
+	// 	li_error(data, err);
 	ft_printf("\n");
 	return (*data);
 }
