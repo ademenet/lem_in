@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/08 11:03:48 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/08 11:31:08 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,12 @@ int					li_ants_get(char *line, t_graph *data)
 ** commands (two sharps then start or end).
 */
 
-int					li_sharp_handler(char *line)
+void				li_sharp_handler(char *line, int *com)
 {
-	if (ft_strcmp("##start", line) == 0)
-		return (1);
-	else if (ft_strcmp("##end", line) == 0)
-		return (2);
-	else
-		return (0);
+	if (ft_strcmp("##start", line) == 0 && *com == 0)
+		*com = 1;
+	else if (ft_strcmp("##end", line) == 0 && *com == 0)
+		*com = 2;
 }
 
 /*
@@ -81,7 +79,7 @@ t_graph				li_parsing(t_graph *data)
 	{
 		ft_putendl(line);
 		if (line[0] == '#')
-			com = li_sharp_handler(line);
+			li_sharp_handler(line, &com);
 		else if (data->err == 0)
 			data->err = li_ants_get(line, data);
 		else if (data->err == 1)
