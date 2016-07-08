@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/08 11:30:36 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/08 14:19:05 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ int						li_array_len(void **tab);
 void					li_check_valid(t_graph *data);
 void					li_check_linked(t_graph *data);
 void					li_error(t_graph *data);
+void					li_error_msg(int err);
 
 /*
 ** CLEAN

@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 10:08:58 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/08 11:31:08 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/08 14:13:52 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int					li_ants_get(char *line, t_graph *data)
 		return (1);
 	}
 	else
-		return (-1);
+		return (-11);
 }
 
 /*
