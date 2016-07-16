@@ -6,59 +6,11 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 16:15:12 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/08 14:54:29 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/16 14:20:39 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
-
-void				li_display_path(t_path **path)
-{
-	t_path			*f;
-	int				i;
-
-	i = 0;
-	f = path[i];
-	while (path[i] != NULL)
-	{
-		ft_printf("------------\nChemin %d\n------------\n", i);
-		f = path[i];
-		while (f)
-		{
-			ft_printf("name: %8s | ant_id: %2d\n", f->name, f->ant_id);
-			f = f->next;
-		}
-		i++;
-	}
-}
-
-void				li_bonuses(int argc, char **argv, t_graph *data)
-{
-	int				i;
-	int				j;
-
-	if (argc > 1)
-	{
-		i = argc - 1;
-		while (i > 0)
-		{
-			j = -1;
-			if (argv[i][0] == '-')
-			{
-				while (argv[i][++j] != '\0')
-				{
-					if (argv[i][j] == 'v')
-						data->bonus[0] = 1;
-					else if (argv[i][j] == 'c')
-						data->bonus[1] = 1;
-				}
-			}
-			else
-				ft_printf("Wrong arguments for bonuses, use: -v or -c.\n");
-			i--;
-		}
-	}
-}
 
 /*
 ** Check if start or end are linked to the rest of our graph.

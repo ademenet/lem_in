@@ -6,7 +6,7 @@
 #    By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/30 16:59:27 by ademenet          #+#    #+#              #
-#    Updated: 2016/07/07 18:58:56 by ademenet         ###   ########.fr        #
+#    Updated: 2016/07/16 14:20:54 by ademenet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ OBJ_PATH = ./obj
 
 SRC_NAME =	lem_in.c\
 			li_aside.c\
+			li_bonus.c\
 			li_clean.c\
 			li_display.c\
 			li_error.c\

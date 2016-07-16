@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 19:20:02 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/06 11:23:08 by alain            ###   ########.fr       */
+/*   Updated: 2016/07/16 14:27:20 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int					li_display(t_graph *data, t_path **paths)
 		i++;
 	}
 	if (ret)
-		ft_printf("\n");
+		data->plays += ft_printf("\n");
 	return (ret);
 }
 
@@ -114,4 +114,6 @@ void				li_determine(t_graph *data, t_path **paths)
 		}
 		ret = li_display(data, paths);
 	}
+	if (data->bonus[2] == 1)
+		li_display_stats(data);
 }

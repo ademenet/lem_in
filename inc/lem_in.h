@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/08 14:19:05 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/16 14:11:46 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,12 @@ struct					s_graph
 	struct s_room		*end;
 	struct s_room		*head;
 	struct s_room		*queue;
+	char				bonus[3];
 	int					err;
-	char				bonus[2];
+	int					plays;
 };
+
+
 
 /*
 ** DISPLAY
@@ -75,6 +78,7 @@ void					li_ants_crawling(t_path *path, int ant);
 void					li_display2(t_graph *data, int ant_id, char *name);
 int						li_display(t_graph *data, t_path **paths);
 void					li_determine(t_graph *data, t_path **paths);
+void					li_display_stats(t_graph *data);
 
 /*
 ** WEIGHT
@@ -163,5 +167,6 @@ void					li_clean_paths(t_path **paths);
 */
 
 void					li_bonuses(int argc, char **argv, t_graph *data);
+void					li_bonuses_management(t_graph *data, char arg);
 
 #endif
