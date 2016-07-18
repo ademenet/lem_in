@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 14:19:07 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/18 14:45:15 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/18 14:48:19 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** "Hey! You are doing wrong. Let me help you."
 */
 
-void				li_bonus_error()
+void				li_bonus_error(void)
 {
 	ft_printf("Sypnosis: ./lem-in [-v -c -s] < [some maps]\n");
 	ft_printf("\t[-v] for verbose error mode,\n\t[-s] for turns count,\n\t");
