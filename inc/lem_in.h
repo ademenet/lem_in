@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/16 14:11:46 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/18 10:35:51 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ struct					s_graph
 	int					err;
 	int					plays;
 };
-
-
 
 /*
 ** DISPLAY
