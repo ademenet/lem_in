@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:24:50 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/18 10:35:51 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/18 14:45:13 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,5 +166,6 @@ void					li_clean_paths(t_path **paths);
 
 void					li_bonuses(int argc, char **argv, t_graph *data);
 void					li_bonuses_management(t_graph *data, char arg);
+void					li_bonus_error();
 
 #endif

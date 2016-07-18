@@ -6,35 +6,26 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 14:19:07 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/16 14:27:25 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/18 14:45:15 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
 /*
-** Display all the unique paths that we found.
+** "Hey! You are doing wrong. Let me help you."
 */
 
-void				li_display_path(t_path **path)
+void				li_bonus_error()
 {
-	t_path			*f;
-	int				i;
-
-	i = 0;
-	f = path[i];
-	while (path[i] != NULL)
-	{
-		ft_printf("------------\nChemin %d\n------------\n", i);
-		f = path[i];
-		while (f)
-		{
-			ft_printf("name: %8s | ant_id: %2d\n", f->name, f->ant_id);
-			f = f->next;
-		}
-		i++;
-	}
+	ft_printf("Sypnosis: ./lem-in [-v -c -s] < [some maps]\n");
+	ft_printf("\t[-v] for verbose error mode,\n\t[-s] for turns count,\n\t");
+	ft_printf("[-c] for colors.\n");
 }
+
+/*
+** Manage which bonus to display.
+*/
 
 void				li_bonuses_management(t_graph *data, char arg)
 {
@@ -45,6 +36,10 @@ void				li_bonuses_management(t_graph *data, char arg)
 	else if (arg == 's')
 		data->bonus[2] = 1;
 }
+
+/*
+** Display bonus or alert message.
+*/
 
 void				li_bonuses(int argc, char **argv, t_graph *data)
 {
@@ -63,7 +58,7 @@ void				li_bonuses(int argc, char **argv, t_graph *data)
 					li_bonuses_management(data, argv[i][j]);
 			}
 			else
-				ft_printf("Wrong arguments for bonuses, use: -v, -c or -s.\n");
+				li_bonus_error();
 			i--;
 		}
 	}
