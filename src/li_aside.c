@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:40:15 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/16 14:20:12 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/18 15:12:37 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ void				li_one_tube(t_graph *data)
 		ant++;
 	}
 	ft_printf("\n");
+	if (data->bonus[2] == 1)
+	{
+		data->plays = 2;
+		li_display_stats(data);
+	}
 }
 
 int					li_path_len(t_path *path)

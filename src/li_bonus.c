@@ -6,7 +6,7 @@
 /*   By: ademenet <ademenet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 14:19:07 by ademenet          #+#    #+#             */
-/*   Updated: 2016/07/18 14:48:19 by ademenet         ###   ########.fr       */
+/*   Updated: 2016/07/18 15:19:53 by ademenet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,15 @@ void				li_bonuses(int argc, char **argv, t_graph *data)
 
 void				li_display_stats(t_graph *data)
 {
-	ft_printf("\033[1m%d\033[0m fourmis ont atteint la salle ", data->ant);
-	ft_printf("##end en \033[1m%d\033[0m tours.\n", data->plays);
+	static char		*pluriel = "ont";
+	static char		*singulier = "a";
+	char			*verb;
+
+	if (data->ant <= 1)
+		verb = singulier;
+	else
+		verb = pluriel;
+	ft_printf("\033[1m%d\033[0m fourmis %s atteint la salle ", data->ant, verb);
+	ft_printf("\033[1m%s\033[0m en ", data->end->name);
+	ft_printf("\033[1m%d\033[0m tours.\n", data->plays - 1);
 }
